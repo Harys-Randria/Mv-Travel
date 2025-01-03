@@ -63,7 +63,7 @@ const Navbar = () => {
             <Link to="/destination" className="hover:text-yellow-500">
               Trip
             </Link>
-            <Link to="/aboutus" className="hover:text-yellow-500">
+            <Link to="/about" className="hover:text-yellow-500">
               About Us
             </Link>
             <Link to="/cars" className="hover:text-yellow-500">
@@ -93,7 +93,7 @@ const Navbar = () => {
               Trip
             </Link>
             <Link
-              to="/aboutus"
+              to="/about"
               onClick={() => setIsMenuOpen(false)}
               className="block hover:text-yellow-500"
             >
