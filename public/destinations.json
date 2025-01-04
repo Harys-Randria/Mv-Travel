@@ -33,8 +33,9 @@
         "Tips"
       ],
       "location": {
-        "latitude": -13.3451,
-        "longitude": 48.2203
+        "latitude": -13.3177,
+        "longitude": 48.2044,
+        "city": "Nosy Be"
       }
     },
     {
@@ -70,7 +71,8 @@
       ],
       "location": {
         "latitude": -18.8792,
-        "longitude": 47.5079
+        "longitude": 47.5079,
+        "city": "Tananarive"
       }
     },
     {
@@ -106,7 +108,8 @@
       ],
       "location": {
         "latitude": -18.1492,
-        "longitude": 49.4022
+        "longitude": 49.4022,
+        "city": "Tamatave"
       }
     },
     {
@@ -145,7 +148,8 @@
       ],
       "location": {
         "latitude": -23.35,
-        "longitude": 43.6667
+        "longitude": 43.6667,
+        "city": "Tuléar"
       }
     }
   ]
