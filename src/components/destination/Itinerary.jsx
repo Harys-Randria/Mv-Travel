@@ -1,19 +1,16 @@
-// Itinerary.js
-import React from 'react';
-
 const Itinerary = ({ details }) => {
   return (
     <div className="bg-white shadow rounded-md p-6">
       <h2 className="text-2xl font-bold mb-6">🗺️ Itinéraire</h2>
-      <div className="space-y-4">
+      <div className="space-y-8">
         {details.map((day, index) => (
           <div
             key={index}
-            className="flex items-start gap-4 bg-gray-50 p-4 rounded-lg shadow hover:bg-gray-100 transition"
+            className="flex items-start space-x-4 relative border-l-2 border-blue-500 pl-6"
           >
-            <div className="text-blue-600 text-lg font-bold">📅 Jour {index + 1}</div>
+            <div className="absolute -left-3 top-0 bg-blue-500 w-6 h-6 rounded-full"></div>
             <div>
-              <h3 className="font-semibold text-gray-700">{day.title}</h3>
+              <h3 className="font-semibold text-lg">{day.title}</h3>
               <p className="text-gray-600">{day.description}</p>
             </div>
           </div>
@@ -22,6 +19,5 @@ const Itinerary = ({ details }) => {
     </div>
   );
 };
-
 
 export default Itinerary;
