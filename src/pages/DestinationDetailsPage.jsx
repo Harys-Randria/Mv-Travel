@@ -8,6 +8,7 @@ import Overview from "../components/destination/Overview";
 import Itinerary from "../components/destination/Itinerary";
 import IncludesExcludes from "../components/destination/IncludesExcludes";
 import Map from "../components/destination/Map";
+import GaleriePhoto from "../components/destination/GaleriePhoto";
 
 const DestinationDetailsPage = () => {
   const { id } = useParams();
@@ -73,7 +74,7 @@ const DestinationDetailsPage = () => {
         <TabNavigation
           activeTab={activeTab}
           setActiveTab={setActiveTab}
-          tabs={["Overview", "Itinerary", "Includes/Excludes", "Map"]}
+          tabs={["Overview", "Gallery", "Itinerary", "Includes/Excludes", "Map"]}
         />
       </div>
 
@@ -85,6 +86,7 @@ const DestinationDetailsPage = () => {
         transition={{ duration: 0.3 }}
       >
         {activeTab === "Overview" && <Overview description={data.overview} />}
+        {activeTab === "Gallery" && <GaleriePhoto images={data.images} />}
         {activeTab === "Itinerary" && <Itinerary details={data.itinerary} />}
         {activeTab === "Includes/Excludes" && (
           <IncludesExcludes

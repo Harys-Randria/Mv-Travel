@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.no-scrollbar {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+  }
+
+.gallery-container {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+  }
+  
+.gallery-container img {
+    user-select: none; /* Empêche la sélection du texte */
+    pointer-events: none; /* Empêche l'interaction */
+  }
+  
+.tailwind-gallery .image-gallery-thumbnails-wrapper {
+    @apply overflow-x-auto flex gap-2 mt-4;
+  }
+
+.tailwind-gallery .image-gallery-thumbnail {
+    @apply w-16 h-16 rounded-lg border border-gray-300 hover:border-blue-500 transition;
+  }
+  

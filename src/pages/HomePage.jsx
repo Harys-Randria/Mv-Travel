@@ -1,3 +1,4 @@
+import GaleriePhoto from "../components/destination/GaleriePhoto";
 import DestinationList from "../components/Home/DestinationList";
 import ExperienceSection from "../components/Home/ExperienceSection";
 import HeroSection from "../components/Home/HeroSection";
@@ -10,6 +11,7 @@ const HomePage = () => {
         <DestinationList />
         <ExperienceSection />
         <Testimonial />
+        <GaleriePhoto />
       </div>
     );
   };
