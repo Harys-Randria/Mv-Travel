@@ -5,13 +5,20 @@ import HeroSection from "../components/Home/HeroSection";
 import Testimonial from "../components/Home/Testimonial";
 
 const HomePage = () => {
+
+  const homeImages = [
+    "https://via.placeholder.com/800x400?text=Image+1",
+    "https://via.placeholder.com/800x400?text=Image+2",
+    "https://via.placeholder.com/800x400?text=Image+3",
+  ];
+
     return (
       <div>
         <HeroSection />
         <DestinationList />
         <ExperienceSection />
         <Testimonial />
-        <GaleriePhoto />
+        <GaleriePhoto images={homeImages} />
       </div>
     );
   };

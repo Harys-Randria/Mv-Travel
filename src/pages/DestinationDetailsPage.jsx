@@ -55,26 +55,16 @@ const DestinationDetailsPage = () => {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-transparent"></div>
         <h1 className="relative text-4xl sm:text-5xl md:text-6xl font-bold text-yellow-400">
-          {data.title}
+          {data.title} / {data.days} DAYS
         </h1>
       </section>
-
-      {/* Header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <DestinationHeader title={data.title} days={data.days} />
-      </div>
-
-      {/* Carousel */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ImageCarousel images={data.images} />
-      </div>
 
       {/* Tabs */}
       <div className="sticky top-0 bg-white shadow-md z-50">
         <TabNavigation
           activeTab={activeTab}
           setActiveTab={setActiveTab}
-          tabs={["Overview", "Gallery", "Itinerary", "Includes/Excludes", "Map"]}
+          tabs={["Overview", "Itinerary", "Includes/Excludes", "Map", "Gallery"]}
         />
       </div>
 

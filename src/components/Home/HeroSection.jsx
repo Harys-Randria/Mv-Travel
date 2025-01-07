@@ -11,7 +11,7 @@ const HeroSection = () => {
           Your adventure awaits. Discover exclusive destinations and unforgettable experiences.
         </p>
         <a
-          href="/destinations"
+          href="/tailormadetour"
           className="relative inline-flex items-center bg-orange-500 text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-orange-600 transition-transform duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-orange-300"
         >
           <span className="absolute inset-0 w-full h-full rounded-full animate-pulse bg-orange-400 opacity-50"></span>

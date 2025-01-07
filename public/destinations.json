@@ -1,36 +1,36 @@
 [
     {
       "id": 1,
-      "title": "Nosy Be",
-      "description": "Paradise island with pristine beaches and spectacular sunsets.",
+      "title": "River trip to the Tsingy",
+      "description": "Vibrant capital with rich culture, history, and colorful markets.",
       "image": "https://cdn.pixabay.com/photo/2020/04/26/16/29/nosy-bee-5096063_1280.jpg",
       "region": "North",
       "price": "$150",
-      "link": "/nosy-be",
+      "link": "/destinations/1",
       "days": 5,
-      "overview": "Discover the tropical paradise of Nosy Be, with its stunning beaches, crystal-clear waters, and vibrant marine life.",
+      "overview": "A trip to the Tsiribihina River and the Tsingy de Bemaraha National Park in Madagascar offers a blend of breathtaking landscapes, cultural encounters, and wildlife exploration The Tsiribihina River trip typically involves a multi-day canoe or motorboat journey through stunning riverine landscapes. Along the way, you’ll see diverse wildlife such as lemurs, crocodiles, chameleons, and a variety of birds.The river banks are dotted with baobab trees, small villages, and cascading waterfalls, such as the Anosin’ampela Waterfall.This is an excellent opportunity to meet local Malagasy communities, learn about their traditions, and experience their hospitality. Nights are spent camping on the riverbanks under star-filled skies.",
       "images": [
         "https://cdn.pixabay.com/photo/2020/04/26/16/29/nosy-bee-5096063_1280.jpg",
         "https://cdn.pixabay.com/photo/2020/04/26/16/39/madagascar-5096080_1280.jpg"
       ],
       "itinerary": [
-        { "day": 1, "title": "Arrival in Nosy Be", "description": "Transfer to the hotel and relax on the beach." },
-        { "day": 2, "title": "Marine Adventure", "description": "Snorkeling and diving in vibrant coral reefs." },
-        { "day": 3, "title": "Island Exploration", "description": "Visit Lokobe Reserve and spot unique wildlife." },
-        { "day": 4, "title": "Relaxation", "description": "Enjoy a spa day or explore local markets." },
-        { "day": 5, "title": "Departure", "description": "Transfer to the airport for your return flight." }
-      ],
+        {"title": "Day 1 : Antananarivo to Antsirabe", "description": "Meet your driver at the hotel. Half day  drive to Antsirabe through the highlang scenery. Check-in at the hotel. Reach the by bike or by car the Tritriva lac where  start a  short walk around the cratera of an old volcanoes. Back to the hotel at the end of afternoon." },
+        {"title": "Day 2 : Antsirabe to Miandrivazo", "description": "After a visit of the zebu horn workshop lead to Miandrivazo. The drive is about 7 hours but some stop on the way for pictures of the savana landscape and goldmine town." },
+        {"title": "Day 3 to day 4 : Miandrivazo - River trip", "description": "Leave Miandrivazo and drive to the harbour. The sailing team are waiting for you in Masiakampy village where the river trip start. \nThe river is a shelter of different species of Fauna and Flora,  a perfect spotlight for wildlife lover and for photography lover's. The scenery offer different and unique landscape, Gorge, local Hut and you will see the daily routines of People living allong the river. \nFullboard and camping during the river trip." },
+        {"title": "Day 5 : Belo sur Tsiribihina to Bekopaka", "description": "Last lorning to enjoy the sailing to reach Belo sur Tsiribihina where the car is. Lunch in town and keep on driving to reach our destination at the end of the day." },
+        {"title": "Day 6 : Tsingy of Bemaraha National Park", "description": "Pick up your picnic lunch at the hotel  and drive to the park entrance for about one and half hours. The Tsingy of Bemaraha is a unique and striking geological formation located in western Madagascar, within the Bemaraha National Park. \nKnown for its dramatic limestone formations, the word \"Tsingy\" comes from the Malagasy language and means \"where one cannot walk barefoot.\" This refers to the razor-sharp, jagged limestone pinnacles that dominate the landscape, creating a labyrinthine terrain that. is both spectacular and treacherous. \nDrive back in the afternoon to the hotel." },
+        {"title": "Day 7 : Bekopaka Kirindy forest", "description": "Full Day drive to Kirindy with stop for lunch in Belo sur Tsiribihina before crossing the river on the  ferry boat. Check in at the hotel and night walk in the kirindy reserve to spot the mousse lemurs and nocturnal wildlife." },
+        {"title": "Day 8 : Kirindy-Baobab Alley- Morondava", "description": "Morning visite of the Kirindy forest for about 2 hour. The forest is a shelter of several mamifer such as the fosa and différent Kind of lemur. After the hike, relax  and lunch at the hotel before living for the sunset at the Baiba alley.\nDrive to morondava and check in at the hotel." },
+        {"title": "Day 9 : Morondava- Antsirabe", "description": "Full Day drive to Antsirabe and some stop on the road for picture and break. Overnight at the hotel. " },
+        {"title": "Day 10 : Antsirabe -Antananarivo", "description": "No rush, only half Day drive to Antananarivo through the highlands Landscape.Some stop on the road to buy some souvenirs or taste some local food. Drive tour around Antananarivo city to  discover the story of Merina tribes. \nCheck in at the hotel" }
+        ],
       "includes": [
-        "Accommodation in beachfront resorts",
-        "Daily breakfast",
-        "Local guide",
-        "Airport transfers"
+        "4wd Car with English driver",
+        "Accommodation on Bed and breakfast",
+        "Full board du ring the river trip",
+        "Parc and reserve fees"
       ],
-      "excludes": [
-        "Flights to Madagascar",
-        "Travel insurance",
-        "Personal expenses",
-        "Tips"
+      "excludes": [""
       ],
       "location": {
         "latitude": -13.3177,
@@ -40,34 +40,34 @@
     },
     {
       "id": 2,
-      "title": "Antananarivo",
+      "title": "Eastern Lemur Tour",
       "description": "Vibrant capital with rich culture, history, and colorful markets.",
       "image": "https://cdn.pixabay.com/photo/2017/03/16/19/52/town-2150061_1280.jpg",
       "region": "Central",
-      "price": "$120",
-      "link": "/antananarivo",
+      "price": "425 €",
+      "link": "/destinations/2",
       "days": 3,
-      "overview": "Explore the bustling capital of Madagascar, Antananarivo, known for its historic sites and lively atmosphere.",
+      "overview": "Discover the Enchanting Lemurs of Eastern Madagascar! \nEmbark on an unforgettable journey to the lush rainforests of eastern Madagascar, home to some of the world’s most fascinating and iconic creatures—lemurs!\n🌴 What Awaits You? \nAndasibe-Mantadia National Park: Meet the largest living lemur, the Indri Indri, renowned for its hauntingly beautiful call. \nPalmarium Reserve: Get up close with playful Coquerel's sifakas and the elusive Aye-Aye during a night walk",
       "images": [
         "https://cdn.pixabay.com/photo/2017/03/16/19/52/town-2150061_1280.jpg",
         "https://cdn.pixabay.com/photo/2020/03/26/13/15/micheline-4970420_1280.jpg"
       ],
       "itinerary": [
-        { "day": 1, "title": "City Tour", "description": "Visit the Royal Palace and vibrant local markets." },
-        { "day": 2, "title": "Cultural Immersion", "description": "Experience traditional Malagasy cuisine and performances." },
-        { "day": 3, "title": "Historical Sites", "description": "Explore the sacred hill of Ambohimanga." }
-      ],
+        { "title": "Day 1: Antananarivo - Andasibe", "description": "Drive to the East down to the National road. First stop for a guided tour around  Chameleon farm. Easy walk to know more about the différent Kind of reptiles endemic of the East of Madagascar. Keep on driving  to Andasibe. After check-in and short break, nocturnal visit of the commubity parc to see the smallest  mousse lemur in the world and another wildlife such as frogs and other  lemur. Overnight at the hotel." },
+        { "title": "Day 2: Andasibe Analamazaotra National Park", "description": "Get ready with you camera. Walk in the rainforests, the main target is the largest living lemur cailles \"Indri Indri\", you can hear them call 4kilometer away. The walk Last around four hour and if your Lucky you will fi d out another species of mamal endemic from Andasibe. " },
+        { "title": "Day 3: Andasibe  - Ankanin'ny nofy", "description": "Half Day drive to teach Manambato. There you'll take boat for about 1 hour and Half to cross two big sacred lakes and the pangalanes Chanel before reaxhing Ankanin'ny nofy. After check-in and relax at the lodge take a boat tour to the Aye-Aye Island to meet this spécial nocturnal lemurs that you cannot see any here else and still fascinating the wildlife lovers. Overnight at the hotel. " },
+        { "title": "Day 4: Ankanin'ny nofy", "description": "Day visit of the private reserve to see another species of lemurs like the rare  black Macaco and also some Flora like the carnivore plant the Madagascar Nepenthes. \nAfternoon at leisure and relax at the lodge, you can walk around or enjoy chilling on the lake beach. Overnight at the hotel" },
+        { "title": "Day 5: Ankan'ny Nofy - Andasibe ", "description": "Drive back to Andasibe for about 5 hours, some stop on the road for pics and break for lunch at the fruit market. Arriving at Andasibe in the afternoon, check-in and relax at the hotel." },
+        { "title": "Day 6:Andasibe - Antananrivo", "description": "Morning drive  to Tana for about 4 hours. Transfer to your hôtel." }
+        ],
       "includes": [
-        "City-center accommodation",
-        "Breakfast daily",
-        "Guided city tour",
-        "Transport within the city"
+        "Overnight at the hotel on bed and breakfast",
+        "Car rental with english speaking driver",
+        "Boat Transfer Manambato to Ankanin'ny nofy - Manambato",
+        "Parc and reserve entrance and local guide fees mentioned in the program"
       ],
       "excludes": [
-        "International flights",
-        "Lunches and dinners",
-        "Travel insurance",
-        "Souvenirs"
+        ""
       ],
       "location": {
         "latitude": -18.8792,
@@ -77,12 +77,12 @@
     },
     {
       "id": 3,
-      "title": "Toamasina",
+      "title": "The color of the Southern",
       "description": "Largest port with palm-fringed beaches and a tropical vibe.",
       "image": "https://cdn.pixabay.com/photo/2020/01/26/17/01/lemur-4795249_1280.jpg",
       "region": "East",
       "price": "$130",
-      "link": "/toamasina",
+      "link": "/destinations/3",
       "days": 4,
       "overview": "Experience the vibrant port city of Toamasina, famous for its beaches, tropical vibe, and colonial architecture.",
       "images": [
@@ -90,21 +90,26 @@
         "https://cdn.pixabay.com/photo/2017/03/16/19/52/town-2150061_1280.jpg"
       ],
       "itinerary": [
-        { "day": 1, "title": "Arrival", "description": "Welcome to Toamasina and check-in at the hotel." },
-        { "day": 2, "title": "City Tour", "description": "Visit the bustling markets and colonial buildings." },
-        { "day": 3, "title": "Nature Exploration", "description": "Discover nearby rainforests and waterfalls." },
-        { "day": 4, "title": "Relaxation", "description": "Spend the day at the beach before departure." }
-      ],
+        {"title": "Day 1 : Flight to Antananarivo", "description": "Welcome at the airport \nTransfert to the hotel and overnight " },
+        {"title": "Day 2 : Antananarivo - Antsirabe", "description": "Drive to Antsirabe \nTrekking around the volcanique lake at Tritriva and the village. Overnight at the hotel " },
+        {"title": "Day 3 : Antsirabe-Ranomafana ", "description": "Drive a long the Betsileo countryside, some stop for pics and visiting artcraft Shop of zafimaniry famous for woodcarving and marquetterie. Overnight at the hotel" },
+        {"title": "Day 4 : Ranomafana National parc", "description": "Day Visit of the parc to spot thé rare bamboo lemur and another species of wild life in the rainforest. \nVisit of the vanille plantation in the afternoon after break and  carry on with the night walk to see the tiny lemurs called Mousse lemur. \nOvernight at the hotel " },
+        {"title": "Day 5 : Ranomafana- Ranohira ", "description": "Drive to isalo but stop in Anja Park for short walk in the community reserve to see the Maki also know as ring taille lemur. Keep on driving to Ranohira the village next to the park. Overnight at the hotel" },
+        {"title": "Day 6 : isalo National Park ", "description": "Full Day visit of the park, Natural swimming pool, view point on the sandstone massif crest, walking throught the canyon till the namaza camping site to see some wildlife. \nYou can refrech near the cascade and another Natural swimming pool. \nSunset at the Windows of the isalo at the end of the afternoon. \nOvernight at the hotel " },
+        {"title": "Day 7 : Isalo- Ifaty", "description": "Half Day drive to Ifaty to reach the coast. After check in at the hotel, visit of the baobab forest and Sunset on the beach. \nOvernight at the hotel" },
+        {"title": "Day  8 to Day 9", "description": "Free Day at leisure. Relax on the beach or snorkeling and  diving  can be organised by the hotel. \nOvernight at the hotel " },
+        {"title": "Day 10 : Flight to Antananarivo", "description": "Transfer to the airport of Tulear to take flight to Antananarivo. \nTransfer to your hotel " }
+        ],
       "includes": [
-        "Accommodation",
-        "Breakfast and dinner",
-        "Guided tours",
-        "Transfers"
+        "Overnight at the hotel on bed and breakfast",
+        "Car rental with english speaking driver",
+        "Car Transfer to the airport  Ifaty- Tulear",
+        "Parc entrance and guide fees of each parc mentioned in the program",
+        "A botte of water per Day",
+        "Internal flight from Tulear to Tana "
       ],
       "excludes": [
-        "Personal expenses",
-        "Travel insurance",
-        "Flights"
+        ""
       ],
       "location": {
         "latitude": -18.1492,
@@ -114,37 +119,39 @@
     },
     {
       "id": 4,
-      "title": "Tuléar",
+      "title": "Immersion in the highland",
       "description": "Sunny city with coral reefs and stunning beaches.",
       "image": "https://cdn.pixabay.com/photo/2019/10/29/15/30/madagascar-4587230_1280.jpg",
       "region": "South",
       "price": "$140",
-      "link": "/tulear",
+      "link": "/destinations/4",
       "days": 6,
-      "overview": "Enjoy the sunny coastal city of Tuléar, known for its coral reefs, vibrant marine life, and relaxed atmosphere.",
+      "overview": "Madagascar is often referred to as the \"Red Island\" due to the rich, red laterite soil that dominates much of its landscape. This soil, highly oxidized and rich in iron, gives the island its distinctive reddish hue, particularly noticeable in rural and agricultural regions.  Despite these challenges, Madagascar's blend of vibrant landscapes and its status as one of the world's biodiversity hotspots make it truly extraordinary ",
       "images": [
         "https://cdn.pixabay.com/photo/2019/10/29/15/30/madagascar-4587230_1280.jpg",
         "https://cdn.pixabay.com/photo/2014/07/05/17/10/chameleon-384957_1280.jpg"
       ],
       "itinerary": [
-        { "day": 1, "title": "Arrival", "description": "Check-in and relax at the hotel." },
-        { "day": 2, "title": "Beach Day", "description": "Explore the stunning beaches and enjoy water activities." },
-        { "day": 3, "title": "Coral Reefs", "description": "Snorkeling and diving in the coral reefs." },
-        { "day": 4, "title": "Local Market", "description": "Visit the local market for unique crafts and souvenirs." },
-        { "day": 5, "title": "Wildlife", "description": "Spot lemurs and other wildlife in nearby reserves." },
-        { "day": 6, "title": "Departure", "description": "Transfer to the airport for your journey home." }
-      ],
+        { "title": "Day 1 : Antananarivo - Antsirabe", "description": "Wakking city tour to discover Antananarivo and it's history. \nVisit the Queen's palace the iconic structure of the Merina Kingdom during the 19th Century. \nAfter the Visit drive to Antsirabe through the highland scenery, ricefield, zebucart and some stop to meet local People." },
+        { "title": "Day 2: Antsirabe Cycling tour", "description": "Cycling tour around Antsirabe the capital city of the rickshaw  till the Tritriva  lake. \nA walking tour around the village for about 2  will be organised with a local guide. Visit the school, churh, family tombe and local people house and why not to test malagasy cake and local food m. Picnic lunch around the cratera lake. \nThe back with the bycicle at the end of the afternoon. " },
+        { "title": "Day  3: Antsirabe - Ranomafana", "description": "From the higland to the rainforests the landscapes is outstanding. Some stop one the road for a  pause photo in the Betsileo country. \nLunch in Ambositra and Visit the Zafimaniry workshop, traditionaly woodcarving tropical from this region such us marquetterie. \nThis is a full Day drive but \"Mora-Mora way\". \nOvernight at the hotel " },
+        { "title": "Day 4 : Ranomafana - National Park Ambalavao", "description": "Morning Visit of the Ranomafana National Park to see your first lemur endemic from this rainforest like the golden bamboo lemur and the great one's. \nA local guide and animal spoter will leader you through the jungle wihch is also rich with diversified flaura species. \nAfeter the Visit drive to Ambalavao for the overnight." },
+        { "title": "Day 5 : Ambalavao - Camp catta ", "description": "Leave ambalavao and drive to camp catta for about 2 hours. The tsaranoro valley is the shellter of the ring-tailled lemur, there is also Nice view on the Chameleon pics and the Andringitra national Park. \nA local guide will meet you there for a treck around the valley and the forest. \nThe hike is around  two including village and the forest and up to six hours if you want to reach the pic for the view point. \nOvernight in Tsaranoro valley. " },
+        { "title": "Day 6 : Tsaranoro Ranohira", "description": "Morning relax at the eco-lodge before leaving to Rabohira. Half Day drive to get to the Isalo National Park, some zebu herd. \nOvernight at the hotel" },
+        { "title": "Day 7 : isalo National Park ", "description": "Full Day visit of the park, Natural swimming pool, view point on the sandstone massif crest, walking throught the canyon till the namaza camping site to see some wildlife. \nYou can refrech near the cascade and another Natural swimming pool. \nSunset at the Windows of the isalo at the end of the afternoon. \nOvernight at the hotel" },
+        { "title": "Day 8 : Isalo - Ifaty", "description": "Half Day drive to Ifaty to reach the coast. After check in at the hotel, visit of the baobab forest and Sunset on the beach.\nOvernight at the hotel" },
+        { "title": "Day 9 to day 10 : Ifaty", "description": "Free Day at leisure. Relax on the beach or snorkeling and  diving  can be organised by the hotel. \nOvernight at the hotel " },
+        { "title": "Day 11 : Flight to Antananarivo", "description": "Transfer to the airport of Tulear to take flight to Antananarivo. Transfer to your hotel " }
+        ],
       "includes": [
-        "Accommodation",
-        "Daily breakfast",
-        "Local guide",
-        "Transport during the tour"
+        "Overnight at the hotel on bed and breakfast",
+        "Car rental with english speaking driver",
+        "Car Transfer to the airport  Ifaty- Tulear",
+        "Parc entrance and guide fees of each parc mentioned in the program",
+        "A botte of water per Day",
+        "Internal flight from Tulear to Tana"
       ],
       "excludes": [
-        "Flights",
-        "Personal expenses",
-        "Tips",
-        "Insurance"
       ],
       "location": {
         "latitude": -23.35,

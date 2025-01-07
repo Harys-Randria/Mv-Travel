@@ -36,7 +36,7 @@ const DestinationList = () => {
       {/* "See All Offers" Link */}
       <div className="text-center mt-12">
         <a
-          href="/destination"
+          href="/destinations"
           className="inline-block bg-blue-600 text-white font-semibold py-3 px-6 rounded-full transition-transform duration-300 transform hover:scale-105 hover:bg-blue-700"
         >
           See All Offers

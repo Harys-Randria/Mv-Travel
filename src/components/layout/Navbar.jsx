@@ -66,12 +66,6 @@ const Navbar = () => {
             <Link to="/about" className="hover:text-yellow-500">
               About Us
             </Link>
-            <Link to="/cars" className="hover:text-yellow-500">
-              Cars
-            </Link>
-            <Link to="/contactus" className="hover:text-yellow-500">
-              Contact
-            </Link>
           </div>
         </div>
 
@@ -98,20 +92,6 @@ const Navbar = () => {
               className="block hover:text-yellow-500"
             >
               About Us
-            </Link>
-            <Link
-              to="/cars"
-              onClick={() => setIsMenuOpen(false)}
-              className="block hover:text-yellow-500"
-            >
-              Cars
-            </Link>
-            <Link
-              to="/contactus"
-              onClick={() => setIsMenuOpen(false)}
-              className="block hover:text-yellow-500"
-            >
-              Contact
             </Link>
           </div>
         )}

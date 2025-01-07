@@ -5,6 +5,8 @@ import DestinationsPage from '../pages/DestinationsPage';
 import DestinationDetailsPage from '../pages/DestinationDetailsPage';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import NotFoundPage from '../components/layout/NotFoundPage';
+import TailorMadePage from '../pages/TailorMadePage';
 
 const AppRoutes = () => {
   return (
@@ -17,6 +19,8 @@ const AppRoutes = () => {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/destinations" element={<DestinationsPage />} />
           <Route path="/destinations/:id" element={<DestinationDetailsPage />} />
+          <Route path="*" element={<NotFoundPage />} /> {/* Catch-all route */}
+          <Route path="/tailormadetour" element={<TailorMadePage />} />
         </Routes>
       </main>
       <Footer />
