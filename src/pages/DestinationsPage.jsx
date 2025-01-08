@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import client from "../contentfulClient";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"; // Import du renderer Rich Text
+import { Link } from "react-router-dom";
 
 const regions = {
   North: "bg-blue-500",
@@ -15,24 +18,41 @@ const DestinationsPage = () => {
   const [selectedRegion, setSelectedRegion] = useState("All");
   const [loading, setLoading] = useState(true);
 
-  // Fetch data dynamically
   useEffect(() => {
-    fetch("/destinations.json") // Remplacez par le bon chemin
-      .then((response) => response.json())
-      .then((data) => {
-        setDestinations(data);
+    const fetchDestinations = async () => {
+      try {
+        const response = await client.getEntries({
+          content_type: "voyageDestinationCard",
+        });
+  
+        // Map pour inclure les IDs système
+        const formattedData = response.items.map((item) => ({
+          id: item.sys.id, // Utilise l'ID système généré par Contentful
+          title: item.fields.title,
+          description: item.fields.description,
+          image: item.fields.image?.fields?.file?.url || "",
+          region: item.fields.region,
+          price: item.fields.price,
+          link: `/destinations/${item.sys.id}`, // Génère le lien avec l'ID système
+        }));
+  
+        setDestinations(formattedData);
         setLoading(false);
-      })
-      .catch((error) => console.error("Error fetching destinations:", error));
+      } catch (error) {
+        console.error("Erreur lors de la récupération des destinations :", error);
+        setLoading(false);
+      }
+    };
+  
+    fetchDestinations();
   }, []);
+  
 
-  // Filter destinations based on region
   const filteredDestinations =
     selectedRegion === "All"
       ? destinations
       : destinations.filter((dest) => dest.region === selectedRegion);
 
-  // Loading state
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -113,7 +133,7 @@ const DestinationsPage = () => {
             <div className="relative overflow-hidden h-48">
               <LazyLoadImage
                 src={dest.image}
-                alt={dest.name}
+                alt={dest.title}
                 className="w-full h-full object-cover transition-transform duration-300 transform hover:scale-110"
                 effect="opacity"
               />
@@ -124,16 +144,22 @@ const DestinationsPage = () => {
               <h3 className="text-xl font-bold text-gray-800 mb-2">
                 {dest.title}
               </h3>
-              <p className="text-gray-600 mb-4">{dest.description}</p>
+              {/* Rich Text Rendering */}
+              <div className="text-gray-600 mb-4">
+                {typeof dest.description === "object"
+                  ? documentToReactComponents(dest.description)
+                  : dest.description}
+              </div>
               <p className="text-yellow-500 font-semibold text-lg">
                 {dest.price}
               </p>
-              <a
-                href={`/destinations/${dest.id}`}
+              {/* Link to Destination Details */}
+              <Link
+                to={`/destinations/${dest.id}`} // Génère le bon lien avec l'ID manuel
                 className="mt-4 block w-full text-center px-4 py-2 bg-yellow-500 text-gray-900 font-semibold rounded-md hover:bg-yellow-600 transition-transform transform hover:scale-105"
               >
                 Explore
-              </a>
+              </Link>
             </div>
           </motion.div>
         ))}

@@ -5,7 +5,7 @@ const Itinerary = ({ details }) => {
       <div className="space-y-8">
         {details.map((day, index) => (
           <div
-            key={index}
+            key={`${day.title}-${index}`}
             className="flex items-start space-x-4 relative border-l-2 border-blue-500 pl-6"
           >
             <div className="absolute -left-3 top-0 bg-blue-500 w-6 h-6 rounded-full"></div>

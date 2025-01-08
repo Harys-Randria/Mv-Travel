@@ -2,26 +2,31 @@ import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 
 const GaleriePhoto = ({ images }) => {
-  // Désactiver le clic droit pour rendre les images non téléchargeables
-  const handleContextMenu = (e) => e.preventDefault();
+  console.log("Images reçues dans GaleriePhoto :", images);
 
+  if (!images || images.length === 0) {
+    return (
+      <div className="text-center py-6 text-gray-500 italic">
+        Aucune image disponible pour cette destination.
+      </div>
+    );
+  }
+
+  // Formater les images pour react-image-gallery
   const formattedImages = images.map((image) => ({
-    original: image, // Lien vers l'image principale
-    thumbnail: image, // Lien pour l'aperçu
+    original: image, // URL de l'image en taille originale
+    thumbnail: image, // URL de l'image pour la vignette
   }));
 
   return (
-    <div
-      onContextMenu={handleContextMenu}
-      className="gallery-container bg-gray-50 rounded-lg shadow-lg p-4"
-    >
+    <div className="gallery-container bg-gray-50 rounded-lg shadow-lg p-4">
       <ImageGallery
         items={formattedImages}
-        showPlayButton={false} // Masque le bouton de lecture automatique
-        showFullscreenButton={true} // Affiche le bouton plein écran
-        showThumbnails={true} // Affiche les miniatures
-        showIndex={true} // Affiche l'index de l'image
-        additionalClass="tailwind-gallery" // Classe CSS personnalisée pour Tailwind
+        showPlayButton={false}
+        showFullscreenButton={true}
+        showThumbnails={true}
+        showIndex={true}
+        additionalClass="tailwind-gallery"
       />
     </div>
   );

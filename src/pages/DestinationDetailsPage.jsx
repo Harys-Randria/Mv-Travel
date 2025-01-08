@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import DestinationHeader from "../components/destination/DestinationHeader";
-import ImageCarousel from "../components/destination/ImageCarousel";
+import client from "../contentfulClient";
 import TabNavigation from "../components/destination/TabNavigation";
 import Overview from "../components/destination/Overview";
 import Itinerary from "../components/destination/Itinerary";
@@ -11,35 +10,65 @@ import Map from "../components/destination/Map";
 import GaleriePhoto from "../components/destination/GaleriePhoto";
 
 const DestinationDetailsPage = () => {
-  const { id } = useParams();
-  const [data, setData] = useState(null);
-  const [activeTab, setActiveTab] = useState("Overview");
+  const { id } = useParams(); // Récupération de l'ID via l'URL
+  const [data, setData] = useState(null); // Stocker les données récupérées
+  const [loading, setLoading] = useState(true); // Indicateur de chargement
+  const [activeTab, setActiveTab] = useState("Overview"); // Onglet actif
 
+  // Fonction pour récupérer les données
   useEffect(() => {
-    fetch("/destinations.json")
-      .then((response) => response.json())
-      .then((destinations) => {
-        const selectedDestination = destinations.find(
-          (destination) => destination.id === parseInt(id)
-        );
-        setData(selectedDestination);
-      })
-      .catch((error) =>
-        console.error("Error loading destination details:", error)
-      );
+    const fetchDestination = async () => {
+      try {
+        const response = await client.getEntry(id); // Utilise l'ID récupéré depuis l'URL
+        const formattedData = {
+          id: response.sys.id,
+          title: response.fields.title,
+          image: response.fields.image?.fields?.file?.url || "",
+          overview: response.fields.overview || "Aucun résumé disponible",days: response.fields.days || "N/A",
+          images: response.fields["galleryPhotos"]
+          ? response.fields["galleryPhotos"].map((img) => img.fields.file.url) // Récupération des URLs
+          : [],
+          itinerary: response.fields.itinerary || [],
+          includes: response.fields.includes || [],
+          excludes: response.fields.excludes || [],
+          location: response.fields.location || {},
+        };
+        console.log("Response from Contentful:", response.fields["galleryPhotos"]);
+        setData(formattedData);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des détails :", error);
+        setData(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchDestination();
   }, [id]);
+  
 
-  if (!data) {
+  // Affichage pendant le chargement
+  if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-pulse text-center">
-          <div className="h-12 w-1/2 bg-gray-300 rounded-md mb-4 mx-auto"></div>
-          <div className="h-64 w-full bg-gray-300 rounded-md"></div>
-        </div>
+        <p className="text-gray-500">Chargement des données...</p>
       </div>
     );
   }
 
+  // Affichage en cas d'absence de données
+  if (!data) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <p className="text-red-500 text-center">
+          Aucune donnée trouvée pour cette destination. <br />
+          Vérifiez l'ID ou réessayez plus tard.
+        </p>
+      </div>
+    );
+  }
+
+  // Affichage principal
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -84,7 +113,16 @@ const DestinationDetailsPage = () => {
             excludes={data.excludes}
           />
         )}
-        {activeTab === "Map" && <Map location={data.location} />}
+        {activeTab === "Map" && (
+          <Map
+            location={{
+              latitude: data.location.lat,
+              longitude: data.location.lon,
+              city: "Paris", // Si vous avez une ville ou un autre détail
+            }}
+          />
+        )}
+
       </motion.div>
     </motion.div>
   );
