@@ -1,15 +1,39 @@
 import { useEffect, useState } from 'react';
 import DestinationCard from '../ui/DestinationCard';
+import client from "../../contentfulClient";
 
 const DestinationList = () => {
+
   const [destinations, setDestinations] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch data dynamically
-    fetch('/destinations.json') // Remplacez par votre endpoint API ou URL Firebase
-      .then((response) => response.json())
-      .then((data) => setDestinations(data))
-      .catch((error) => console.error('Error fetching destinations:', error));
+    const fetchDestinations = async () => {
+      try {
+        const response = await client.getEntries({
+          content_type: "voyageDestinationCard",
+        });
+  
+        // Map pour inclure les IDs système
+        const formattedData = response.items.map((item) => ({
+          id: item.sys.id, // Utilise l'ID système généré par Contentful
+          title: item.fields.title,
+          description: item.fields.description,
+          image: item.fields.image?.fields?.file?.url || "",
+          region: item.fields.region,
+          price: item.fields.price,
+          link: `/destinations/${item.sys.id}`, // Génère le lien avec l'ID système
+        }));
+  
+        setDestinations(formattedData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des destinations :", error);
+        setLoading(false);
+      }
+    };
+  
+    fetchDestinations();
   }, []);
 
   return (
@@ -22,15 +46,18 @@ const DestinationList = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto px-5">
-        {destinations.map((destination, index) => (
+      {destinations.map((destination) => {
+        console.log(destination); // Vérifier les données de chaque destination
+        return (
           <DestinationCard
-            key={index}
+            key={destination.id}
             title={destination.title}
             description={destination.description}
             image={destination.image}
             link={destination.link}
           />
-        ))}
+        );
+      })}
       </div>
 
       {/* "See All Offers" Link */}
