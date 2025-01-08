@@ -22,22 +22,12 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link to="/destination" className="hover:text-yellow-300">
+              <Link to="/destinations" className="hover:text-yellow-300">
                 Our Tours
               </Link>
             </li>
             <li>
-              <Link to="/cars" className="hover:text-yellow-300">
-                Our Cars
-              </Link>
-            </li>
-            <li>
-              <Link to="/contactus" className="hover:text-yellow-300">
-                Contact Us
-              </Link>
-            </li>
-            <li>
-              <Link to="/aboutus" className="hover:text-yellow-300">
+              <Link to="/about" className="hover:text-yellow-300">
                 About Us
               </Link>
             </li>
