@@ -68,11 +68,11 @@ const DestinationsPage = () => {
         className="relative min-h-screen bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://cdn.pixabay.com/photo/2020/01/30/20/34/madagascar-4806491_960_720.jpg')",
+            "url('https://cdn.pixabay.com/photo/2020/01/26/17/01/lemur-4795249_960_720.jpg",
         }}
       >
         <div className="absolute inset-0 bg-black opacity-60 flex items-center justify-center px-4 text-center">
-          <h1 className="text-lg sm:text-2xl md:text-4xl font-bold text-yellow-400">
+          <h1 className="text-6xl md:text-8xl font-title text-yellow-400">
             Discover Madagascar’s Destinations
           </h1>
         </div>
@@ -80,7 +80,7 @@ const DestinationsPage = () => {
 
       {/* Region Filter Section */}
       <div className="py-8 text-center">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+        <h2 className="text-6xl md:text-8xl font-title text-gray-800 mb-6">
           Explore by Region
         </h2>
         <div className="flex flex-wrap justify-center gap-2 sm:gap-4">

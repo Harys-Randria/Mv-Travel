@@ -14,7 +14,7 @@ const ExperienceSection = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         {/* Title and Subtitle */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-yellow-400 mb-4">
+          <h2 className="text-6xl md:text-8xl font-title text-yellow-400 mb-4">
             Discover Madagascar with Us
           </h2>
           <p className="text-lg md:text-xl text-gray-300">

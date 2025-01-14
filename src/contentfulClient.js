@@ -2,7 +2,7 @@ import { createClient } from 'contentful';
 
 const client = createClient({
   space:'wwhr6qah8mau', 
-  accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN, 
+  accessToken: 'FNfiBdzeAjuj58J7kRQG-hqIIzFJvaVYRQTqVMgQkXE', 
 });
 
 export default client;

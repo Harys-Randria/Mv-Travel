@@ -10,15 +10,15 @@ const TabNavigation = ({ activeTab, setActiveTab, tabs }) => {
             onClick={() => setActiveTab(tab)}
             className={`relative px-6 py-3 text-sm md:text-base font-medium focus:outline-none whitespace-nowrap ${
               activeTab === tab
-                ? "text-blue-600 border-b-4 border-blue-600"
-                : "text-gray-600 hover:text-blue-600"
+                ? "text-genericBlue"
+                : "text-gray-400 hover:text-genericBlue"
             }`}
           >
             {tab}
             {/* Animation indicator */}
             {activeTab === tab && (
               <motion.div
-                className="absolute left-0 right-0 bottom-0 h-[2px] bg-blue-600"
+                className="absolute left-0 right-0 bottom-0 h-[2px] bg-genericBlue"
                 layoutId="underline"
               />
             )}
