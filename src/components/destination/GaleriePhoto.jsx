@@ -1,9 +1,7 @@
-import ImageGallery from "react-image-gallery";
-import "react-image-gallery/styles/css/image-gallery.css";
+import React from "react";
+import { Gallery } from "react-grid-gallery";
 
 const GaleriePhoto = ({ images }) => {
-  console.log("Images reçues dans GaleriePhoto :", images);
-
   if (!images || images.length === 0) {
     return (
       <div className="text-center py-6 text-gray-500 italic">
@@ -12,22 +10,17 @@ const GaleriePhoto = ({ images }) => {
     );
   }
 
-  // Formater les images pour react-image-gallery
   const formattedImages = images.map((image) => ({
-    original: image, // URL de l'image en taille originale
-    thumbnail: image, // URL de l'image pour la vignette
+    src: image,
+    thumbnail: image,
+    thumbnailWidth: 320,
+    thumbnailHeight: 212,
+    caption: "Cliquez pour agrandir",
   }));
 
   return (
-    <div className="gallery-container bg-gray-50 rounded-lg shadow-lg p-4">
-      <ImageGallery
-        items={formattedImages}
-        showPlayButton={false}
-        showFullscreenButton={true}
-        showThumbnails={true}
-        showIndex={true}
-        additionalClass="tailwind-gallery"
-      />
+    <div className="gallery-container p-4">
+      <Gallery images={formattedImages} />
     </div>
   );
 };

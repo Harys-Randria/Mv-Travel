@@ -23,7 +23,8 @@ export default {
         'blue-dark': '#1A2D52',
         'green-light': '#C6DFCB',
         orange: '#EAB308',
-        genericBlue: '#111827'
+        genericBlue: '#111827',
+        blueB:'#003966',
       },
       fontFamily: {
         generic: ["Karla", "serif"],

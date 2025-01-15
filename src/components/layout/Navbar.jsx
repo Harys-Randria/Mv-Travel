@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes, FaPhone, FaEnvelope, FaHome, FaPlane, FaInfoCircle } from 'react-icons/fa';
 import Breadcrumb from '../ui/Breadcrumb';
+import logo from '../../assets/logo.jpg';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -54,7 +55,7 @@ const Navbar = () => {
             <div className="relative">
               <Link to="/" className="flex items-center">
                 <img
-                  src="https://via.placeholder.com/60"
+                  src={logo}
                   alt="MadaWeaver Logo"
                   className="w-12 h-12 object-cover rounded-full -mt-2 ring-2 ring-white"
                 />
