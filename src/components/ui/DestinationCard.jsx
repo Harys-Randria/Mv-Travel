@@ -24,7 +24,7 @@ const DestinationCard = ({ title, description, image, link, price, currency = "Â
         <h3 className="text-lg md:text-xl font-semibold text-gray-800">{title}</h3>
         {/* Description */}
         <div className="text-sm md:text-base text-gray-600 mt-2 line-clamp-3">
-          {documentToReactComponents(description)}
+          {description}
         </div>
         {/* Footer */}
         <div className="flex justify-between items-center mt-4">

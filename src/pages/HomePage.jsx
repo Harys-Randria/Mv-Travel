@@ -18,7 +18,7 @@ const HomePage = () => {
         <DestinationList />
         <ExperienceSection />
         <Testimonial />
-        <GaleriePhoto images={homeImages} />
+        {/* <GaleriePhoto images={homeImages} /> */}
       </div>
     );
   };

@@ -11,7 +11,7 @@ const DestinationList = () => {
     const fetchDestinations = async () => {
       try {
         const response = await client.getEntries({
-          content_type: "voyageDestinationCard",
+          content_type: "destinationCard",
         });
 
         const formattedData = response.items.map((item) => ({
@@ -21,6 +21,7 @@ const DestinationList = () => {
           image: item.fields.image?.fields?.file?.url || "",
           region: item.fields.region,
           price: item.fields.price,
+          poeple: item.fields.people,
           link: `/destinations/${item.sys.id}`,
         }));
 
@@ -89,6 +90,7 @@ const DestinationList = () => {
                 image={destination.image}
                 link={destination.link}
                 price={destination.price}
+                people={destination.people}
               />
             </motion.div>
           ))}

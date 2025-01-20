@@ -28,15 +28,17 @@ const Navbar = () => {
     <>
       {/* Contact Bar */}
       {showContactBar && (
-        <div className="fixed top-0 left-0 w-full bg-gray-900 text-white text-sm px-4 py-2 z-50 flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
-              <FaPhone />
-              <span>+261 34 12 34 567</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <FaEnvelope />
-              <span>contact@madaweaver.com</span>
+        <div className="fixed top-0 left-0 w-full bg-gray-900 text-white text-sm z-50">
+          <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-2">
+            <div className="flex items-center space-x-6">
+              <div className="flex items-center space-x-2">
+                <FaPhone />
+                <span>+261 34 12 34 567</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <FaEnvelope />
+                <span>contact@madaweaver.com</span>
+              </div>
             </div>
           </div>
         </div>
@@ -49,91 +51,84 @@ const Navbar = () => {
         }`}
         style={{ paddingTop: showContactBar ? '2.5rem' : '0' }}
       >
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center py-4">
-            {/* Logo */}
-            <div className="relative">
-              <Link to="/" className="flex items-center">
-                <img
-                  src={logo}
-                  alt="MadaWeaver Logo"
-                  className="w-12 h-12 object-cover rounded-full -mt-2 ring-2 ring-white"
-                />
-                <span
-                  className={`ml-3 text-2xl font-bold tracking-wide ${
-                    isScrolled ? 'text-black' : 'text-white'
-                  }`}
-                >
-                  MadaWeaver
-                </span>
-              </Link>
-            </div>
-
-            {/* Hamburger Icon for Mobile */}
-            <div className="md:hidden z-50">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className={`focus:outline-none ${
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-4">
+          {/* Logo */}
+          <div>
+            <Link to="/" className="flex items-center">
+              <img
+                src={logo}
+                alt="MadaWeaver Logo"
+                className="w-12 h-12 object-cover rounded-full ring-2 ring-white"
+              />
+              <span
+                className={`ml-3 text-2xl font-bold tracking-wide ${
                   isScrolled ? 'text-black' : 'text-white'
                 }`}
               >
-                {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-              </button>
-            </div>
-
-            {/* Desktop Navigation */}
-            <div
-              className={`hidden md:flex items-center space-x-6 font-medium ${
-                isScrolled ? 'text-black' : 'text-white'
-              }`}
-            >
-              <Link to="/" className="hover:text-yellow-500">
-                HOME
-              </Link>
-              <Link to="/destinations" className="hover:text-yellow-500">
-                TRIP
-              </Link>
-              <Link to="/about" className="hover:text-yellow-500">
-                ABOUT US
-              </Link>
-            </div>
+                MadaWeaver
+              </span>
+            </Link>
           </div>
 
-          {/* Mobile Menu */}
-          {isMenuOpen && (
-            <div className="md:hidden bg-white shadow-lg rounded-lg py-6 px-4 space-y-4 text-black">
-              <Link
-                to="/"
-                onClick={() => setIsMenuOpen(false)}
-                className="flex items-center space-x-2 hover:text-yellow-500"
-              >
-                <FaHome />
-                <span>Home</span>
-              </Link>
-              <Link
-                to="/destinations"
-                onClick={() => setIsMenuOpen(false)}
-                className="flex items-center space-x-2 hover:text-yellow-500"
-              >
-                <FaPlane />
-                <span>Trip</span>
-              </Link>
-              <Link
-                to="/about"
-                onClick={() => setIsMenuOpen(false)}
-                className="flex items-center space-x-2 hover:text-yellow-500"
-              >
-                <FaInfoCircle />
-                <span>About Us</span>
-              </Link>
-            </div>
-          )}
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-6 font-medium">
+            <Link to="/" className={`hover:text-yellow-500 ${isScrolled ? 'text-black' : 'text-white'}`}>
+              HOME
+            </Link>
+            <Link to="/destinations" className={`hover:text-yellow-500 ${isScrolled ? 'text-black' : 'text-white'}`}>
+              TRIP
+            </Link>
+            <Link to="/about" className={`hover:text-yellow-500 ${isScrolled ? 'text-black' : 'text-white'}`}>
+              ABOUT US
+            </Link>
+          </div>
+
+          {/* Hamburger Icon for Mobile */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className={`focus:outline-none ${isScrolled ? 'text-black' : 'text-white'}`}
+            >
+              {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            </button>
+          </div>
         </div>
 
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-white shadow-lg rounded-lg py-6 px-4 space-y-4 text-black">
+            <Link
+              to="/"
+              onClick={() => setIsMenuOpen(false)}
+              className="flex items-center space-x-2 hover:text-yellow-500"
+            >
+              <FaHome />
+              <span>Home</span>
+            </Link>
+            <Link
+              to="/destinations"
+              onClick={() => setIsMenuOpen(false)}
+              className="flex items-center space-x-2 hover:text-yellow-500"
+            >
+              <FaPlane />
+              <span>Trip</span>
+            </Link>
+            <Link
+              to="/about"
+              onClick={() => setIsMenuOpen(false)}
+              className="flex items-center space-x-2 hover:text-yellow-500"
+            >
+              <FaInfoCircle />
+              <span>About Us</span>
+            </Link>
+          </div>
+        )}
+
         {/* Breadcrumb */}
-        <div className={`bg-transparent py-3 px-4 ${
-          isScrolled ? 'text-genericBlue' : 'text-white'
-        }`}
+        <div
+          className={`bg-transparent py-3 px-4 ${
+            isScrolled ? 'text-genericBlue' : 'text-white'
+          }`}
         >
           <Breadcrumb />
         </div>

@@ -11,43 +11,46 @@ import GaleriePhoto from "../components/destination/GaleriePhoto";
 import pub from "../assets/pub.jpg";
 
 const DestinationDetailsPage = () => {
-  const { id } = useParams(); // Récupération de l'ID via l'URL
-  const [data, setData] = useState(null); // Stocker les données récupérées
+  const { id } = useParams(); // ID de la destination
+  const [data, setData] = useState(null); // Données de la destination
   const [loading, setLoading] = useState(true); // Indicateur de chargement
+  const [error, setError] = useState(false); // Gestion des erreurs
   const [activeTab, setActiveTab] = useState("Overview"); // Onglet actif
 
   // Fonction pour récupérer les données
   useEffect(() => {
     const fetchDestination = async () => {
       try {
-        const response = await client.getEntry(id); // Utilise l'ID récupéré depuis l'URL
+        const response = await client.getEntry(id);
+  
         const formattedData = {
           id: response.sys.id,
           title: response.fields.title,
           image: response.fields.image?.fields?.file?.url || "",
           overview: response.fields.overview || "Aucun résumé disponible",
-          days: response.fields.days || "N/A",
+          days: response.fields.day || "N/A",
+          price: response.fields.price || "N/A" ,
           images: response.fields["galleryPhotos"]
             ? response.fields["galleryPhotos"].map((img) => img.fields.file.url)
             : [],
           itinerary: response.fields.itinerary || [],
           includes: response.fields.includes || [],
-          excludes: response.fields.excludes || [],
+          excludes: response.fields.excludes || [], // Vérifiez si cela retourne les données attendues
           location: response.fields.location || {},
         };
+        console.log("Formatted data:", formattedData);
         setData(formattedData);
       } catch (error) {
         console.error("Erreur lors de la récupération des détails :", error);
-        setData(null);
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchDestination();
-  }, [id]);
+  }, [id]);  
 
-  // Affichage pendant le chargement
+  // Affichage en cours de chargement
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -56,14 +59,19 @@ const DestinationDetailsPage = () => {
     );
   }
 
-  // Affichage en cas d'absence de données
-  if (!data) {
+  // Affichage en cas d'erreur
+  if (error) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <p className="text-red-500 text-center">
-          Aucune donnée trouvée pour cette destination. <br />
-          Vérifiez l'ID ou réessayez plus tard.
-        </p>
+        <div className="text-center">
+          <p className="text-red-500">Une erreur s'est produite lors du chargement des données.</p>
+          <button
+            className="mt-4 bg-yellow-400 text-black px-4 py-2 rounded shadow hover:bg-yellow-500 transition"
+            onClick={() => window.location.reload()}
+          >
+            Réessayer
+          </button>
+        </div>
       </div>
     );
   }
@@ -77,22 +85,30 @@ const DestinationDetailsPage = () => {
     >
       {/* Hero Section */}
       <section
-        className="relative min-h-[66vh] bg-cover bg-center flex items-center justify-center text-center"
+        className="relative min-h-[66vh] flex items-center justify-center text-center bg-cover bg-center"
         style={{
           backgroundImage: `url('${data.image}')`,
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-transparent"></div>
-        <h1 className="relative text-4xl sm:text-5xl md:text-6xl font-bold text-yellow-400">
-          {data.title} / {data.days} DAYS
-        </h1>
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60"></div>
+
+        {/* Content */}
+        <div className="relative px-4 sm:px-6 lg:px-8 text-white space-y-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            {data.title}
+          </h1>
+          <p className="text-lg sm:text-xl md:text-2xl font-medium opacity-90">
+            {data.days} Days
+          </p>
+        </div>
       </section>
 
-      {/* Content Layout */}
+
+      {/* Contenu Principal */}
       <div className="flex flex-col lg:flex-row max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* Tabs and Tab Content */}
+        {/* Navigation et Contenu des Onglets */}
         <div className="lg:w-2/3 w-full lg:pr-4">
-          {/* Tabs */}
           <div className="sticky top-0 bg-white shadow-md">
             <TabNavigation
               activeTab={activeTab}
@@ -101,7 +117,6 @@ const DestinationDetailsPage = () => {
             />
           </div>
 
-          {/* Tab Content */}
           <motion.div
             className="py-6"
             initial={{ y: 20, opacity: 0 }}
@@ -112,68 +127,53 @@ const DestinationDetailsPage = () => {
             {activeTab === "Gallery" && <GaleriePhoto images={data.images} />}
             {activeTab === "Itinerary" && <Itinerary details={data.itinerary} />}
             {activeTab === "Includes/Excludes" && (
-              <IncludesExcludes
-                includes={data.includes}
-                excludes={data.excludes}
-              />
+              <IncludesExcludes data={{ includes: data.includes, excludes: data.excludes }} />
             )}
             {activeTab === "Map" && (
               <Map
                 location={{
                   latitude: data.location.lat,
                   longitude: data.location.lon,
-                  city: "Paris", // Si vous avez une ville ou un autre détail
+                  city: "Destination City", // Si une ville est disponible
                 }}
               />
             )}
           </motion.div>
         </div>
 
-       {/* Publicité */}
+        {/* Publicité */}
         <div
           className="relative bg-gray-100 w-[280px] h-[400px] max-w-xs p-6 rounded-lg shadow-md bg-cover bg-center flex flex-col justify-between"
           style={{
-            backgroundImage: `url(${pub})`, // Chemin vers votre image
+            backgroundImage: `url(${pub})`,
           }}
         >
-          {/* Overlay sombre */}
           <div className="absolute inset-0 bg-black/50 rounded-lg"></div>
-
-          {/* Contenu publicitaire */}
           <div className="relative z-10 flex flex-col h-full">
-            {/* Icônes de réseaux sociaux (en haut) */}
             <div className="flex justify-center space-x-4 mb-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition transform duration-200">
-                <i className="fab fa-facebook text-white text-2xl hover:text-blue-500"></i>
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition transform duration-200">
-                <i className="fab fa-instagram text-white text-2xl hover:text-pink-500"></i>
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition transform duration-200">
-                <i className="fab fa-linkedin text-white text-2xl hover:text-blue-700"></i>
-              </a>
-              <a href="mailto:info@example.com" className="hover:scale-110 transition transform duration-200">
-                <i className="fas fa-envelope text-white text-2xl hover:text-red-500"></i>
-              </a>
+              {/* Icônes */}
+              {["facebook", "instagram", "linkedin", "envelope"].map((icon) => (
+                <a
+                  key={icon}
+                  href="#"
+                  className="hover:scale-110 transition transform duration-200"
+                >
+                  <i className={`fab fa-${icon} text-white text-2xl`}></i>
+                </a>
+              ))}
             </div>
-
-            {/* Texte attractif (au milieu) */}
             <div className="flex-grow flex items-center justify-center text-center">
-              <p className="text-white text-2xl font-title leading-relaxed">
-                Plan your dream trip with us! <br /> Explore, experience, and enjoy unforgettable moments.
+              <p className="text-white text-2xl font-title">
+                Plan your dream trip with us! Explore unforgettable moments.
               </p>
             </div>
-
-            {/* Bouton Book Now (en bas, centré) */}
             <div className="mt-6 flex justify-center">
-              <button className="bg-yellow-400 text-black text-base font-bold py-2 px-6 rounded-lg shadow hover:bg-yellow-500 transition duration-300">
+              <button className="bg-yellow-400 text-black px-6 py-2 rounded shadow hover:bg-yellow-500">
                 Book Now
               </button>
             </div>
           </div>
         </div>
-
-
       </div>
     </motion.div>
   );

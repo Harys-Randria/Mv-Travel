@@ -1,41 +1,42 @@
-const IncludesExcludes = ({ includes, excludes }) => {
-  // Vérifiez que includes et excludes sont des tableaux
-  const validIncludes = Array.isArray(includes) ? includes : [];
-  const validExcludes = Array.isArray(excludes) ? excludes : [];
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+
+const IncludesExcludes = ({ data = {} }) => {
+  const validIncludes = Array.isArray(data?.includes?.includes) ? data.includes.includes : [];
+  const validExcludes = Array.isArray(data?.excludes?.excludes) ? data.excludes.excludes : [];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white shadow rounded-md p-6">
-      {/* Includes */}
+    <div className="bg-white shadow-lg rounded-lg p-6 space-y-6">
+      {/* Includes Section */}
       <div>
-        <h2 className="text-xl font-bold mb-4">✅ Inclus</h2>
+        <h2 className="text-2xl font-bold text-green-600 mb-4">What’s Included</h2>
         {validIncludes.length > 0 ? (
           <ul className="space-y-3">
             {validIncludes.map((item, index) => (
-              <li key={index} className="flex items-center gap-3">
-                <span className="text-green-600">✔️</span>
+              <li key={index} className="flex items-center space-x-3">
+                <FaCheckCircle className="text-green-500 text-lg" />
                 <span className="text-gray-700">{item}</span>
               </li>
             ))}
           </ul>
         ) : (
-          <p className="text-gray-500 italic">Aucun élément inclus.</p>
+          <p className="text-gray-500">No inclusions available for this trip.</p>
         )}
       </div>
 
-      {/* Excludes */}
+      {/* Excludes Section */}
       <div>
-        <h2 className="text-xl font-bold mb-4">❌ Non Inclus</h2>
+        <h2 className="text-2xl font-bold text-red-600 mb-4">What’s Not Included</h2>
         {validExcludes.length > 0 ? (
           <ul className="space-y-3">
             {validExcludes.map((item, index) => (
-              <li key={index} className="flex items-center gap-3">
-                <span className="text-red-600">✖️</span>
+              <li key={index} className="flex items-center space-x-3">
+                <FaTimesCircle className="text-red-500 text-lg" />
                 <span className="text-gray-700">{item}</span>
               </li>
             ))}
           </ul>
         ) : (
-          <p className="text-gray-500 italic">Aucun élément exclu.</p>
+          <p className="text-gray-500">No exclusions available for this trip.</p>
         )}
       </div>
     </div>
