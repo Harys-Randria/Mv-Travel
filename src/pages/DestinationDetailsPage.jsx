@@ -11,7 +11,7 @@ import GaleriePhoto from "../components/destination/GaleriePhoto";
 import pub from "../assets/pub.jpg";
 
 const DestinationDetailsPage = () => {
-  const { id } = useParams(); // ID de la destination
+  const { slug } = useParams(); // ID de la destination
   const [data, setData] = useState(null); // Données de la destination
   const [loading, setLoading] = useState(true); // Indicateur de chargement
   const [error, setError] = useState(false); // Gestion des erreurs
@@ -21,40 +21,59 @@ const DestinationDetailsPage = () => {
   useEffect(() => {
     const fetchDestination = async () => {
       try {
-        const response = await client.getEntry(id);
+        const response = await client.getEntries({
+          content_type: "destinationCard", // Utilisez le type de contenu correspondant
+        });
   
-        const formattedData = {
-          id: response.sys.id,
-          title: response.fields.title,
-          image: response.fields.image?.fields?.file?.url || "",
-          overview: response.fields.overview || "Aucun résumé disponible",
-          days: response.fields.day || "N/A",
-          price: response.fields.price || "N/A" ,
-          images: response.fields["galleryPhotos"]
-            ? response.fields["galleryPhotos"].map((img) => img.fields.file.url)
-            : [],
-          itinerary: response.fields.itinerary || [],
-          includes: response.fields.includes || [],
-          excludes: response.fields.excludes || [], // Vérifiez si cela retourne les données attendues
-          location: response.fields.location || {},
-        };
-        console.log("Formatted data:", formattedData);
-        setData(formattedData);
+        const generateSlug = (title) =>
+          title
+            .toLowerCase()
+            .replace(/ /g, "-") // Remplace les espaces par des tirets
+            .replace(/[^\w-]+/g, ""); // Supprime les caractères spéciaux
+  
+        // Trouver la destination correspondant au slug
+        const matchingEntry = response.items.find(
+          (item) => generateSlug(item.fields.title) === slug
+        );
+  
+        if (matchingEntry) {
+          const formattedData = {
+            id: matchingEntry.sys.id,
+            title: matchingEntry.fields.title,
+            image: matchingEntry.fields.image?.fields?.file?.url || "",
+            overview: matchingEntry.fields.overview || "Aucun résumé disponible",
+            days: matchingEntry.fields.day || "N/A",
+            price: matchingEntry.fields.price || "N/A",
+            images: matchingEntry.fields["galleryPhotos"]
+              ? matchingEntry.fields["galleryPhotos"].map((img) => img.fields.file.url)
+              : [],
+            itinerary: matchingEntry.fields.itinerary || [],
+            includes: matchingEntry.fields.includes || [],
+            excludes: matchingEntry.fields.excludes || [],
+            location: matchingEntry.fields.location || {},
+          };
+  
+          setData(formattedData);
+        } else {
+          console.error("Aucune destination trouvée pour ce slug");
+          setError(true); // Afficher une erreur si aucun résultat
+        }
       } catch (error) {
         console.error("Erreur lors de la récupération des détails :", error);
+        setError(true);
       } finally {
         setLoading(false);
       }
     };
   
     fetchDestination();
-  }, [id]);  
+  }, [slug]);  
 
   // Affichage en cours de chargement
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <p className="text-gray-500">Chargement des données...</p>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-orange border-opacity-75"></div>
       </div>
     );
   }

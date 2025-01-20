@@ -3,13 +3,9 @@ const AboutPage = () => {
     <div className="bg-gray-50">
       {/* Hero Section */}
       <section
-        className="relative h-[60vh] bg-cover bg-center flex items-center justify-center"
-        style={{
-          backgroundImage: `url('https://cdn.pixabay.com/photo/2016/05/10/12/21/animal-1383616_1280.jpg')`,
-        }}
+        className="relative h-[60vh] bg-gradient-to-r from-yellow-400 to-yellow-600 flex items-center justify-center"
       >
-        <div className="absolute inset-0 bg-black bg-opacity-70"></div>
-        <h1 className="relative text-5xl font-title text-white tracking-wide">
+        <h1 className="text-7xl font-title text-white tracking-wide shadow-lg">
           About Our Company
         </h1>
       </section>
@@ -19,16 +15,14 @@ const AboutPage = () => {
         <h2 className="text-4xl font-title text-gray-800 text-center">
           Who We Are
         </h2>
-        <p className="mt-8 text-lg text-gray-600 leading-relaxed text-justify">
-          At Madaweaver, we believe every journey begins with a dream, and we’re here to make yours a reality. Founded with a passion for exploration and a commitment to exceptional service, we specialize in crafting unforgettable travel experiences tailored to your desires.
+        <p className="mt-8 text-lg text-gray-600 leading-relaxed text-justify max-w-3xl mx-auto space-y-6">
+          At Madaweaver, we believe every journey begins with a dream, and we’re here to make yours a reality.
           <br />
-          Whether you’re seeking a relaxing beach escape, an adventurous trek through nature, or an immersive cultural tour, our team of dedicated travel experts ensures every detail is handled with care. From personalized itineraries to seamless bookings, we go above and beyond to turn your travel ideas into extraordinary adventures.
+          Founded with a passion for exploration and a commitment to exceptional service, we specialize in crafting unforgettable travel experiences tailored to your desires.
           <br />
-          Our mission is to inspire wanderlust and create memories that last a lifetime. With a network of trusted partners around the globe, we bring you exclusive access to unique destinations, outstanding accommodations, and curated experiences that you won’t find anywhere else.
+          Whether you’re seeking a relaxing beach escape, an adventurous trek through nature, or an immersive cultural tour, our team of dedicated travel experts ensures every detail is handled with care.
           <br />
-          At MADAWEAVER TOUR, your journey is our passion. Let us take you places you’ve only imagined.
-          <br />
-          Dream. Explore. Discover.
+          <span className="font-semibold text-gray-800">Dream. Explore. Discover.</span>
         </p>
       </div>
 
@@ -37,16 +31,17 @@ const AboutPage = () => {
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
           {[
             {
+              icon: "🌍",
               title: "Our Mission",
-              description:
-                "To create unforgettable travel experiences that inspire individuals to explore the beauty of the world.",
+              description: "To create unforgettable travel experiences...",
             },
             {
+              icon: "🚀",
               title: "Our Vision",
-              description:
-                "To become the most trusted travel partner globally, known for personalized experiences and sustainable tourism practices.",
+              description: "To become the most trusted travel partner...",
             },
             {
+              icon: "🌱",
               title: "Our Values",
               description: (
                 <ul className="list-disc list-inside space-y-2">
@@ -56,12 +51,13 @@ const AboutPage = () => {
                 </ul>
               ),
             },
-          ].map(({ title, description }) => (
+          ].map(({ icon, title, description }) => (
             <div
               key={title}
               className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition"
             >
-              <h3 className="text-2xl font-bold text-yellow-500">{title}</h3>
+              <div className="text-4xl">{icon}</div>
+              <h3 className="mt-4 text-2xl font-bold text-yellow-500">{title}</h3>
               <p className="mt-6 text-gray-600 leading-relaxed">{description}</p>
             </div>
           ))}
@@ -96,7 +92,7 @@ const AboutPage = () => {
           ].map(({ img, title, description }) => (
             <div
               key={title}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 transform hover:-translate-y-2"
             >
               <img
                 src={img}
@@ -113,15 +109,15 @@ const AboutPage = () => {
       </div>
 
       {/* Call-to-Action */}
-      <div className="bg-gray-800 py-16">
+      <div className="bg-gradient-to-r from-yellow-500 to-yellow-700 py-16">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold text-white">
+          <h2 className="text-7xl font-title text-white">
             Start Your Journey With Us Today
           </h2>
-          <p className="text-gray-300 mt-4">
+          <p className="text-gray-200 mt-4">
             Get in touch with us to plan your next unforgettable adventure.
           </p>
-          <button className="mt-8 px-8 py-4 bg-yellow-500 text-gray-900 font-semibold rounded-lg hover:bg-yellow-600 transition">
+          <button className="mt-8 px-8 py-4 bg-white text-yellow-700 font-semibold rounded-lg hover:bg-gray-100 transition">
             Contact Us
           </button>
         </div>

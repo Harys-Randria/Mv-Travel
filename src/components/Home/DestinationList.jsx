@@ -7,6 +7,12 @@ const DestinationList = () => {
   const [destinations, setDestinations] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const generateSlug = (title) =>
+    title
+      .toLowerCase()
+      .replace(/ /g, "-") // Replace spaces with hyphens
+      .replace(/[^\w-]+/g, ""); // Remove special characters
+      
   useEffect(() => {
     const fetchDestinations = async () => {
       try {
@@ -22,7 +28,7 @@ const DestinationList = () => {
           region: item.fields.region,
           price: item.fields.price,
           poeple: item.fields.people,
-          link: `/destinations/${item.sys.id}`,
+          link: `/destinations/${generateSlug(item.fields.title)}`,
         }));
 
         setDestinations(formattedData);
@@ -56,7 +62,7 @@ const DestinationList = () => {
       {/* Loader */}
       {loading && (
         <div className="flex justify-center items-center min-h-[200px]">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500 border-opacity-75"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-orange border-opacity-75"></div>
         </div>
       )}
 
@@ -106,7 +112,7 @@ const DestinationList = () => {
       >
         <a
           href="/destinations"
-          className="inline-block bg-blue-600 text-white font-semibold py-3 px-6 rounded-full transition-transform duration-300 transform hover:scale-105 hover:bg-blue-700"
+          className="inline-block bg-orange text-black font-semibold py-3 px-6 rounded-full transition-transform duration-300 transform hover:scale-105 hover:bg-yellow-500"
         >
           See All Offers
         </a>
