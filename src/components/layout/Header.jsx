@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes, FaPhone, FaEnvelope, FaHome, FaPlane, FaInfoCircle } from 'react-icons/fa';
 import Breadcrumb from '../ui/Breadcrumb';
 import logo from '../../assets/logo.jpg';
@@ -8,6 +8,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showContactBar, setShowContactBar] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,11 +25,13 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const isActive = (path) => location.pathname === path;
+
   return (
-    <header className="fixed top-0 left-0 w-full z-50">
+    <header className="fixed top-0 left-0 w-full z-50 font-sans">
       {/* Contact Bar */}
       {showContactBar && (
-        <div className="fixed top-0 left-0 w-full bg-gray-900 text-white text-sm z-50">
+        <div className="fixed top-0 left-0 w-full bg-gray-900 text-white text-sm z-50 transition-all duration-300">
           <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-2">
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
@@ -46,8 +49,8 @@ const Header = () => {
 
       {/* Main Navbar */}
       <nav
-        className={`fixed w-full top-0 left-0 z-40 transition-all duration-300 backdrop-blur-sm ${
-          isScrolled ? 'bg-white/90 shadow-lg' : 'bg-transparent'
+        className={`fixed w-full top-0 left-0 z-40 transition-all duration-300 ${
+          isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'
         }`}
         style={{ paddingTop: showContactBar ? '2.5rem' : '0' }}
       >
@@ -62,14 +65,14 @@ const Header = () => {
               />
               <div className="ml-3">
                 <span
-                  className={`block text-3xl font-bold tracking-wide ${
+                  className={`block text-3xl font-bold tracking-wide transition-colors ${
                     isScrolled ? 'text-black' : 'text-white'
                   }`}
                 >
                   MadaWeaver
                 </span>
                 <span
-                  className={`block text-sm font-medium ${
+                  className={`block text-sm font-medium transition-colors ${
                     isScrolled ? 'text-gray-600' : 'text-gray-200'
                   }`}
                 >
@@ -80,16 +83,23 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6 font-medium">
-            <Link to="/" className={`hover:text-yellow-500 ${isScrolled ? 'text-black' : 'text-white'}`}>
-              HOME
-            </Link>
-            <Link to="/destinations" className={`hover:text-yellow-500 ${isScrolled ? 'text-black' : 'text-white'}`}>
-              TRIP
-            </Link>
-            <Link to="/about" className={`hover:text-yellow-500 ${isScrolled ? 'text-black' : 'text-white'}`}>
-              ABOUT US
-            </Link>
+          <div className="hidden md:flex items-center space-x-8 font-medium relative">
+            {['/', '/destinations', '/about'].map((path, index) => (
+              <Link
+                key={index}
+                to={path}
+                className={`relative ${
+                  isActive(path) ? 'text-yellow-500' : isScrolled ? 'text-black' : 'text-white'
+                } hover:text-yellow-500 transition-all`}
+              >
+                <span>{path === '/' ? 'HOME' : path.slice(1).toUpperCase()}</span>
+                {isActive(path) && (
+                  <div
+                    className="absolute bottom-[-4px] left-0 right-0 h-[2px] bg-yellow-500 rounded transition-all duration-300"
+                  ></div>
+                )}
+              </Link>
+            ))}
           </div>
 
           {/* Hamburger Icon for Mobile */}
@@ -105,37 +115,28 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white shadow-lg rounded-lg py-6 px-4 space-y-4 text-black">
-            <Link
-              to="/"
-              onClick={() => setIsMenuOpen(false)}
-              className="flex items-center space-x-2 hover:text-yellow-500"
-            >
-              <FaHome />
-              <span>Home</span>
-            </Link>
-            <Link
-              to="/destinations"
-              onClick={() => setIsMenuOpen(false)}
-              className="flex items-center space-x-2 hover:text-yellow-500"
-            >
-              <FaPlane />
-              <span>Trip</span>
-            </Link>
-            <Link
-              to="/about"
-              onClick={() => setIsMenuOpen(false)}
-              className="flex items-center space-x-2 hover:text-yellow-500"
-            >
-              <FaInfoCircle />
-              <span>About Us</span>
-            </Link>
+          <div className="md:hidden bg-white shadow-lg rounded-lg py-6 px-4 space-y-4 text-black animate-fade-in">
+            {['/', '/destinations', '/about'].map((path, index) => (
+              <Link
+                key={index}
+                to={path}
+                onClick={() => setIsMenuOpen(false)}
+                className={`flex items-center space-x-2 hover:text-yellow-500 ${
+                  isActive(path) ? 'text-yellow-500' : ''
+                }`}
+              >
+                {path === '/' && <FaHome />}
+                {path === '/destinations' && <FaPlane />}
+                {path === '/about' && <FaInfoCircle />}
+                <span>{path === '/' ? 'Home' : path.slice(1)}</span>
+              </Link>
+            ))}
           </div>
         )}
 
         {/* Breadcrumb */}
         <div
-          className={`bg-transparent py-3 px-4 ${
+          className={`py-3 px-4 ${
             isScrolled ? 'text-genericBlue' : 'text-white'
           }`}
         >

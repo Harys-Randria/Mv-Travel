@@ -3,62 +3,70 @@ const AboutPage = () => {
     <div className="bg-gray-50">
       {/* Hero Section */}
       <section
-        className="relative h-[60vh] bg-gradient-to-r from-yellow-400 to-yellow-600 flex items-center justify-center"
+        className="relative h-[60vh] bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://cdn.pixabay.com/photo/2022/12/30/14/42/cottages-7687138_1280.jpg')",
+        }}
       >
-        <h1 className="text-7xl font-title text-white tracking-wide shadow-lg">
-          About Our Company
-        </h1>
+        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+          <h1 className="text-6xl font-title text-white tracking-wide shadow-lg">
+            About Our Company
+          </h1>
+        </div>
       </section>
 
       {/* Introduction Section */}
-      <div className="max-w-7xl mx-auto px-6 py-16">
+      <div className="relative max-w-7xl mx-auto px-6 py-16 bg-white shadow-md rounded-lg">
+        <div className="absolute top-0 left-0 h-full w-1 bg-yellow-400"></div>
         <h2 className="text-4xl font-title text-gray-800 text-center">
           Who We Are
         </h2>
-        <p className="mt-8 text-lg text-gray-600 leading-relaxed text-justify max-w-3xl mx-auto space-y-6">
-          At Madaweaver, we believe every journey begins with a dream, and we’re here to make yours a reality.
-          <br />
-          Founded with a passion for exploration and a commitment to exceptional service, we specialize in crafting unforgettable travel experiences tailored to your desires.
-          <br />
-          Whether you’re seeking a relaxing beach escape, an adventurous trek through nature, or an immersive cultural tour, our team of dedicated travel experts ensures every detail is handled with care.
-          <br />
-          <span className="font-semibold text-gray-800">Dream. Explore. Discover.</span>
-        </p>
+        <div className="mt-8 flex flex-col lg:flex-row items-center lg:items-start space-y-6 lg:space-y-0 lg:space-x-12">
+          <img
+            src="https://cdn.pixabay.com/photo/2020/04/26/16/39/madagascar-5096080_1280.jpg"
+            alt="About Us"
+            className="w-full lg:w-1/2 rounded-lg shadow-lg"
+          />
+          <p className="text-lg text-gray-600 leading-relaxed lg:w-1/2 space-y-6">
+            At Madaweaver, we believe every journey begins with a dream, and we’re here to make yours a reality.
+            <br />
+            Founded with a passion for exploration and a commitment to exceptional service, we specialize in crafting unforgettable travel experiences tailored to your desires.
+            <br />
+            Whether you’re seeking a relaxing beach escape, an adventurous trek through nature, or an immersive cultural tour, our team of dedicated travel experts ensures every detail is handled with care.
+            <br />
+            <span className="font-semibold text-gray-800">Dream. Explore. Discover.</span>
+          </p>
+        </div>
       </div>
 
       {/* Mission, Vision & Values */}
-      <div className="bg-gray-100 py-16">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div className="py-16 px-6 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8">
           {[
             {
-              icon: "🌍",
+              img: "https://cdn.pixabay.com/photo/2016/08/14/13/43/gorges-du-verdon-1592934_960_720.jpg",
               title: "Our Mission",
               description: "To create unforgettable travel experiences...",
             },
             {
-              icon: "🚀",
+              img: "https://cdn.pixabay.com/photo/2017/09/26/20/48/trust-2790009_960_720.jpg",
               title: "Our Vision",
               description: "To become the most trusted travel partner...",
             },
             {
-              icon: "🌱",
+              img: "https://cdn.pixabay.com/photo/2020/02/19/09/53/palm-trees-4861828_1280.jpg",
               title: "Our Values",
-              description: (
-                <ul className="list-disc list-inside space-y-2">
-                  <li>Integrity and Transparency</li>
-                  <li>Passion for Adventure</li>
-                  <li>Commitment to Sustainability</li>
-                </ul>
-              ),
+              description: "Integrity, Passion, and Sustainability.",
             },
-          ].map(({ icon, title, description }) => (
+          ].map(({ img, title, description }) => (
             <div
               key={title}
-              className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition"
+              className="bg-cover bg-center rounded-lg shadow-md p-8 text-white flex flex-col justify-end h-64"
+              style={{ backgroundImage: `url(${img})` }}
             >
-              <div className="text-4xl">{icon}</div>
-              <h3 className="mt-4 text-2xl font-bold text-yellow-500">{title}</h3>
-              <p className="mt-6 text-gray-600 leading-relaxed">{description}</p>
+              <h3 className="text-2xl font-bold">{title}</h3>
+              <p className="mt-4">{description}</p>
             </div>
           ))}
         </div>
@@ -109,15 +117,21 @@ const AboutPage = () => {
       </div>
 
       {/* Call-to-Action */}
-      <div className="bg-gradient-to-r from-yellow-500 to-yellow-700 py-16">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-7xl font-title text-white">
+      <div
+        className="bg-cover bg-center py-16"
+        style={{
+          backgroundImage:
+            "url('https://cdn.pixabay.com/photo/2016/03/03/09/21/travel-1233762_960_720.jpg')",
+        }}
+      >
+        <div className="bg-black bg-opacity-50 py-16 px-6 text-center text-white max-w-7xl mx-auto rounded-lg shadow-lg">
+          <h2 className="text-6xl font-title">
             Start Your Journey With Us Today
           </h2>
-          <p className="text-gray-200 mt-4">
+          <p className="text-lg mt-4">
             Get in touch with us to plan your next unforgettable adventure.
           </p>
-          <button className="mt-8 px-8 py-4 bg-white text-yellow-700 font-semibold rounded-lg hover:bg-gray-100 transition">
+          <button className="mt-8 px-8 py-4 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 transition">
             Contact Us
           </button>
         </div>

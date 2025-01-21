@@ -104,7 +104,7 @@ const DestinationDetailsPage = () => {
     >
       {/* Hero Section */}
       <section
-        className="relative min-h-[66vh] flex items-center justify-center text-center bg-cover bg-center"
+        className="relative min-h-svh flex items-center justify-center text-center bg-cover bg-center"
         style={{
           backgroundImage: `url('${data.image}')`,
         }}
