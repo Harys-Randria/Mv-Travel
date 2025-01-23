@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { FaMapMarkerAlt, FaUmbrellaBeach, FaTree } from "react-icons/fa";
+import { FaMapMarkerAlt, FaUmbrellaBeach, FaTree, FaTimes } from "react-icons/fa";
 import client from "../contentfulClient";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { Link } from "react-router-dom";
@@ -26,6 +26,10 @@ const DestinationsPage = () => {
   const [selectedRegion, setSelectedRegion] = useState("All");
   const [loading, setLoading] = useState(true);
 
+  // State to manage modal
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedDestination, setSelectedDestination] = useState("");
+
   useEffect(() => {
     const fetchDestinations = async () => {
       try {
@@ -39,6 +43,8 @@ const DestinationsPage = () => {
           description: item.fields.description,
           image: item.fields.image?.fields?.file?.url || "",
           region: item.fields.region,
+          price: item.fields.price,
+          poeple: item.fields.people,
           link: `/destinations/${generateSlug(item.fields.title)}`,
         }));
 
@@ -57,6 +63,16 @@ const DestinationsPage = () => {
     selectedRegion === "All"
       ? destinations
       : destinations.filter((dest) => dest.region === selectedRegion);
+
+  const openModal = (destination) => {
+    setSelectedDestination(destination);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedDestination("");
+    setModalOpen(false);
+  };
 
   if (loading) {
     return (
@@ -93,29 +109,6 @@ const DestinationsPage = () => {
         </motion.div>
       </section>
 
-      {/* Why Visit Madagascar */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <motion.h2
-            className="text-5xl md:text-6xl font-title text-gray-800 mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            Why Visit Madagascar?
-          </motion.h2>
-          <motion.p
-            className="text-gray-600 text-lg md:text-xl leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Madagascar offers stunning landscapes, unique wildlife, and vibrant culture. Whether
-            you're an adventurer or a nature lover, this island has something special for you.
-          </motion.p>
-        </div>
-      </section>
-
       {/* Region Filter Section */}
       <section className="py-8 text-center">
         <h2 className="text-5xl md:text-6xl font-title text-gray-800 mb-6">Explore by Region</h2>
@@ -147,60 +140,111 @@ const DestinationsPage = () => {
       </section>
 
       {/* Destinations Grid */}
-      <section className="py-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 max-w-7xl mx-auto">
-          {filteredDestinations.map((dest, index) => (
+      <section className="py-10 bg-gradient-to-b from-blue-100 via-white to-blue-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-center text-5xl md:text-6xl font-title text-gray-800 mb-8">
+            Discover Your Next Adventure
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Cartes générées */}
+            {filteredDestinations.map((dest, index) => (
+              <motion.div
+                key={dest.id}
+                className="bg-white rounded-xl shadow-md overflow-hidden transform transition hover:scale-105 duration-300 flex flex-col"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <LazyLoadImage
+                  src={dest.image}
+                  alt={dest.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-6 flex flex-col flex-grow">
+                  <h3 className="text-2xl font-semibold text-gray-800 mb-3">
+                    {dest.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-4 flex-grow line-clamp-3">
+                    {typeof dest.description === "object"
+                      ? documentToReactComponents(dest.description)
+                      : dest.description}
+                  </p>
+                  <div className="mt-auto flex justify-between items-center">
+                    <Link
+                      to={dest.link}
+                      className="inline-flex items-center gap-2 bg-yellow-500 text-gray-900 px-5 py-2 rounded-full text-sm font-semibold shadow hover:bg-yellow-600 transition"
+                    >
+                      Explore <FaMapMarkerAlt />
+                    </Link>
+                    <button
+                      onClick={() => openModal(dest.title)}
+                      className="inline-flex items-center gap-2 bg-blue-500 text-white px-5 py-2 rounded-full text-sm font-semibold shadow hover:bg-blue-600 transition"
+                    >
+                      Book
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Carte "Tailor Made" placée après les cartes générées */}
+          <div className="mt-8">
             <motion.div
-              key={dest.id}
-              className="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="relative rounded-xl shadow-md overflow-hidden cursor-pointer group transform transition hover:scale-105 duration-300 border min-h-[200px]"
+              initial={{ opacity: 0, y: 80 }}
+              animate={{ opacity: 2, y: 0 }}
+              transition={{ duration: 0.5, delay: filteredDestinations.length * 0.1 }}
+              onClick={() => (window.location.href = "/tailormadetour")}
+              style={{ width: "396px", height: "200px" }} // Taille explicite pour tester
             >
-              <LazyLoadImage
-                src={dest.image}
-                alt={dest.title}
-                className="w-full h-48 object-cover transition-transform duration-500 hover:scale-110"
-              />
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-gray-800 mb-2">{dest.title}</h3>
-                <p className="text-gray-600 text-sm mb-4">
-                  {typeof dest.description === "object"
-                    ? documentToReactComponents(dest.description)
-                    : dest.description}
+              {/* Image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center group-hover:blur-sm transition duration-300"
+                style={{
+                  backgroundImage:
+                    "url('https://cdn.pixabay.com/photo/2019/11/02/21/36/africa-4597486_1280.jpg')",
+                }}
+              ></div>
+
+              {/* Texte */}
+              <div className="absolute inset-0 flex flex-col items-center justify-end p-6 bg-gradient-to-t from-black via-transparent to-transparent group-hover:hidden">
+                <h3 className="text-xl font-bold text-white mb-2">Tailor Made</h3>
+                <p className="text-sm text-gray-200 text-center">
+                  Can't find what you're looking for? Create your own itinerary!
                 </p>
-                <Link
-                  to={dest.link}
-                  className="inline-flex items-center gap-2 bg-yellow-500 text-gray-900 px-6 py-2 rounded-full text-lg shadow hover:bg-yellow-600 transition"
-                >
-                  Explore <FaMapMarkerAlt />
-                </Link>
+              </div>
+
+              {/* Texte en hover */}
+              <div className="absolute inset-0 hidden group-hover:flex items-center justify-center bg-black bg-opacity-40">
+                <h3 className="text-2xl font-bold text-white">Tailor Made Travel</h3>
               </div>
             </motion.div>
-          ))}
+          </div>
         </div>
       </section>
 
-      {/* Travel Tips */}
-      <section className="py-16 bg-gray-100">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-title text-gray-800 mb-6">Travel Tips</h2>
-          <ul className="text-gray-600 text-lg space-y-4">
-            <li className="flex items-center gap-3 justify-center">
-              <FaUmbrellaBeach className="text-yellow-500" />
-              Pack light, breathable clothing for the tropical climate.
-            </li>
-            <li className="flex items-center gap-3 justify-center">
-              <FaTree className="text-green-500" />
-              Don’t forget your sunscreen and insect repellent.
-            </li>
-            <li className="flex items-center gap-3 justify-center">
-              <FaMapMarkerAlt className="text-red-500" />
-              Learn a few Malagasy phrases to connect with locals.
-            </li>
-          </ul>
+
+      {/* Modal */}
+      {modalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white w-full max-w-3xl rounded-lg shadow-lg p-6 relative">
+            <button
+              onClick={closeModal}
+              className="absolute top-3 right-3 text-gray-600 hover:text-gray-800"
+            >
+              <FaTimes size={24} />
+            </button>
+            <iframe
+              src={`https://docs.google.com/forms/d/e/1FAIpQLSdgy9MuUhPP2R3_P1ozOjfsJfXsl_M9THpy35z3fPBbCxyQLw/viewform?usp=pp_url&entry.109257767=${encodeURIComponent(
+                selectedDestination
+              )}`}
+              title="Booking Form"
+              className="w-full h-[500px]"
+            />
+          </div>
         </div>
-      </section>
+      )}
     </div>
   );
 };

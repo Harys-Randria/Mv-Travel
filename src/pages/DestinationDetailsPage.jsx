@@ -24,18 +24,18 @@ const DestinationDetailsPage = () => {
         const response = await client.getEntries({
           content_type: "destinationCard", // Utilisez le type de contenu correspondant
         });
-  
+
         const generateSlug = (title) =>
           title
             .toLowerCase()
             .replace(/ /g, "-") // Remplace les espaces par des tirets
             .replace(/[^\w-]+/g, ""); // Supprime les caractères spéciaux
-  
+
         // Trouver la destination correspondant au slug
         const matchingEntry = response.items.find(
           (item) => generateSlug(item.fields.title) === slug
         );
-  
+
         if (matchingEntry) {
           const formattedData = {
             id: matchingEntry.sys.id,
@@ -52,7 +52,7 @@ const DestinationDetailsPage = () => {
             excludes: matchingEntry.fields.excludes || [],
             location: matchingEntry.fields.location || {},
           };
-  
+
           setData(formattedData);
         } else {
           console.error("Aucune destination trouvée pour ce slug");
@@ -65,9 +65,19 @@ const DestinationDetailsPage = () => {
         setLoading(false);
       }
     };
-  
+
     fetchDestination();
-  }, [slug]);  
+  }, [slug]);
+
+  // Fonction pour générer le lien du formulaire
+  const generateFormLink = (destination) => {
+    const baseURL =
+      "https://docs.google.com/forms/d/e/1FAIpQLSdgy9MuUhPP2R3_P1ozOjfsJfXsl_M9THpy35z3fPBbCxyQLw/viewform?usp=pp_url";
+    const params = new URLSearchParams({
+      "entry.109257767": destination, // Champ pour la destination
+    });
+    return `${baseURL}&${params.toString()}`;
+  };
 
   // Affichage en cours de chargement
   if (loading) {
@@ -123,7 +133,6 @@ const DestinationDetailsPage = () => {
         </div>
       </section>
 
-
       {/* Contenu Principal */}
       <div className="flex flex-col lg:flex-row max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {/* Navigation et Contenu des Onglets */}
@@ -169,27 +178,20 @@ const DestinationDetailsPage = () => {
         >
           <div className="absolute inset-0 bg-black/50 rounded-lg"></div>
           <div className="relative z-10 flex flex-col h-full">
-            <div className="flex justify-center space-x-4 mb-4">
-              {/* Icônes */}
-              {["facebook", "instagram", "linkedin", "envelope"].map((icon) => (
-                <a
-                  key={icon}
-                  href="#"
-                  className="hover:scale-110 transition transform duration-200"
-                >
-                  <i className={`fab fa-${icon} text-white text-2xl`}></i>
-                </a>
-              ))}
-            </div>
             <div className="flex-grow flex items-center justify-center text-center">
               <p className="text-white text-2xl font-title">
                 Plan your dream trip with us! Explore unforgettable moments.
               </p>
             </div>
             <div className="mt-6 flex justify-center">
-              <button className="bg-yellow-400 text-black px-6 py-2 rounded shadow hover:bg-yellow-500">
+              <a
+                href={generateFormLink(data.title)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-yellow-400 text-black px-6 py-2 rounded shadow hover:bg-yellow-500"
+              >
                 Book Now
-              </button>
+              </a>
             </div>
           </div>
         </div>
