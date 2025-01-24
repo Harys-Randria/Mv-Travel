@@ -1,7 +1,7 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { FaUserFriends } from "react-icons/fa";
 
-const DestinationCard = ({ title, description, image, link, price, currency = "£", people }) => {
+const DestinationCard = ({ title, description, image, link, price, currency = "€", people }) => {
   return (
     <div className="w-80 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white mx-auto">
       {/* Image Wrapper */}

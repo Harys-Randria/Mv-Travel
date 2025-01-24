@@ -27,7 +27,7 @@ const DestinationList = () => {
           image: item.fields.image?.fields?.file?.url || "",
           region: item.fields.region,
           price: item.fields.price,
-          poeple: item.fields.people,
+          people: item.fields.people,
           link: `/destinations/${generateSlug(item.fields.title)}`,
         }));
 

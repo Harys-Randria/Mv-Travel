@@ -131,9 +131,12 @@ const AboutPage = () => {
           <p className="text-lg mt-4">
             Get in touch with us to plan your next unforgettable adventure.
           </p>
-          <button className="mt-8 px-8 py-4 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 transition">
+          <a
+            href="mailto:harysmialy99@gmail.com?subject=Inquiry%20from%20Website&body=Hello,%20I%20would%20like%20to%20know%20more%20about%20your%20services."
+            className="mt-8 inline-block px-8 py-4 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 transition"
+          >
             Contact Us
-          </button>
+          </a>
         </div>
       </div>
     </div>
