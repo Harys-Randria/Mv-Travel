@@ -4,6 +4,8 @@
   status = 200
 
 [[headers]]
-  for = "/*"
+  for = "/sitemap.xml"
   [headers.values]
+  Content-Type = "application/xml"
+  Cache-Control = "max-age=3600"
   Access-Control-Allow-Origin = "*"
