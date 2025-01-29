@@ -47,7 +47,7 @@ const ExperienceSection = () => {
         {/* CTA Button */}
         <div className="text-center mt-12">
           <a
-            href="/about-us"
+            href="/about"
             className="inline-block bg-yellow-500 text-gray-900 font-semibold py-3 px-6 rounded-full transition-transform duration-300 transform hover:scale-105 hover:bg-yellow-600"
           >
             Learn More About Us
