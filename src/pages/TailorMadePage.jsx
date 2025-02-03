@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import client from "../contentfulClient";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -9,7 +9,7 @@ const TailorMadePage = () => {
   const [spots, setSpots] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
-  const sliderRef = useState(null);
+  const sliderRefs = useRef([]);
 
   useEffect(() => {
     const fetchSpots = async () => {
@@ -33,10 +33,11 @@ const TailorMadePage = () => {
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false, // Désactiver l'effet infini pour éviter le clonage des slides
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    adaptiveHeight: true, // Ajuster la hauteur en fonction de l'image
   };
 
   return (
@@ -83,7 +84,7 @@ const TailorMadePage = () => {
       </div>
 
       {/* Madagascar Spots Section */}
-      <div className="bg-white py-12 px-6">
+      <div className="bg-white py-12 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-title text-gray-800 mb-8 text-center">
             Discover Madagascar's Best Spots
@@ -96,31 +97,40 @@ const TailorMadePage = () => {
               {spots.map((spot, index) => (
                 <div key={index} className="flex flex-col md:flex-row items-center gap-6">
                   <div className="relative w-full md:w-1/2 max-w-md mx-auto">
-                    <button 
-                      className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full shadow-lg hover:bg-gray-900 z-20"
-                      onClick={() => sliderRef.current?.slickPrev()}
-                    >
-                      <FaChevronLeft />
-                    </button>
-                    <Slider {...settings} ref={sliderRef} className="rounded-lg shadow-lg">
-                      {spot.gallery.map((img, imgIndex) => (
-                        <img
-                          key={imgIndex}
-                          src={img}
-                          alt={`Gallery image ${imgIndex + 1}`}
-                          className="w-full h-auto object-contain rounded-lg cursor-pointer"
-                          onClick={() => setSelectedImage(img)}
-                        />
-                      ))}
-                    </Slider>
-                    <button 
-                      className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full shadow-lg hover:bg-gray-900"
-                      onClick={() => sliderRef.current?.slickNext()}
-                    >
-                      <FaChevronRight />
-                    </button>
+                    {spot.gallery.length > 1 && ( // Afficher les boutons uniquement si plus d'une image
+                      <>
+                        <button
+                          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full shadow-lg hover:bg-gray-900 z-20"
+                          onClick={() => sliderRefs.current[index]?.slickPrev()}
+                        >
+                          <FaChevronLeft />
+                        </button>
+                        <button
+                          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full shadow-lg hover:bg-gray-900 z-20"
+                          onClick={() => sliderRefs.current[index]?.slickNext()}
+                        >
+                          <FaChevronRight />
+                        </button>
+                      </>
+                    )}
+                    {spot.gallery.length > 0 ? (
+                      <Slider ref={(el) => (sliderRefs.current[index] = el)} {...settings} className="rounded-lg shadow-lg">
+                        {spot.gallery.map((img, imgIndex) => (
+                          <img
+                            key={imgIndex}
+                            src={img}
+                            alt={`Gallery image ${imgIndex + 1}`}
+                            className="w-full max-w-full h-auto object-cover rounded-lg cursor-pointer"
+                            onClick={() => setSelectedImage(img)}
+                          />
+                        ))}
+                      </Slider>
+                    ) : (
+                      <p className="text-gray-500 text-center">No images available</p>
+                    )}
+
                   </div>
-                  <div className="md:w-1/2 px-4">
+                  <div className="w-full md:w-1/2 px-4 text-center md:text-left">
                     <h3 className="text-2xl font-semibold text-gray-800">{spot.title}</h3>
                     <p className="text-gray-600 mt-2 leading-relaxed">{spot.description}</p>
                   </div>
@@ -133,7 +143,7 @@ const TailorMadePage = () => {
 
       {/* Modal for Image Preview */}
       {selectedImage && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 px-4">
           <div className="relative max-w-4xl">
             <button className="absolute top-2 right-2 text-white text-3xl" onClick={() => setSelectedImage(null)}>
               &times;
