@@ -27,6 +27,7 @@ const DestinationList = () => {
           image: item.fields.image?.fields?.file?.url || "",
           region: item.fields.region,
           price: item.fields.price,
+          days: item.fields.day,
           people: item.fields.people,
           link: `/destinations/${generateSlug(item.fields.title)}`,
         }));
@@ -97,6 +98,7 @@ const DestinationList = () => {
                 link={destination.link}
                 price={destination.price}
                 people={destination.people}
+                days={destination.days}
               />
             </motion.div>
           ))}
