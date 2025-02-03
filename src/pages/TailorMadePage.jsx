@@ -84,29 +84,30 @@ const TailorMadePage = () => {
       </div>
 
       {/* Madagascar Spots Section */}
-      <div className="bg-white py-12 px-4 sm:px-6">
+      <div className="bg-white py-10 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-title text-gray-800 mb-8 text-center">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-title text-gray-800 mb-6 sm:mb-8 text-center">
             Discover Madagascar's Best Spots
           </h2>
 
           {loading ? (
             <p className="text-center text-gray-600">Loading...</p>
           ) : (
-            <div className="grid gap-12">
+            <div className="grid gap-8 sm:gap-12">
               {spots.map((spot, index) => (
-                <div key={index} className="flex flex-col md:flex-row items-center gap-6">
-                  <div className="relative w-full md:w-1/2 max-w-md mx-auto">
-                    {spot.gallery.length > 1 && ( // Afficher les boutons uniquement si plus d'une image
+                <div key={index} className="flex flex-col md:flex-row items-center gap-4 sm:gap-6">
+                  {/* Image & Slider */}
+                  <div className="relative w-full md:w-1/2 max-w-sm sm:max-w-md mx-auto">
+                    {spot.gallery.length > 1 && (
                       <>
                         <button
-                          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full shadow-lg hover:bg-gray-900 z-20"
+                          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-gray-900 z-20"
                           onClick={() => sliderRefs.current[index]?.slickPrev()}
                         >
                           <FaChevronLeft />
                         </button>
                         <button
-                          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full shadow-lg hover:bg-gray-900 z-20"
+                          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-gray-900 z-20"
                           onClick={() => sliderRefs.current[index]?.slickNext()}
                         >
                           <FaChevronRight />
@@ -128,11 +129,12 @@ const TailorMadePage = () => {
                     ) : (
                       <p className="text-gray-500 text-center">No images available</p>
                     )}
-
                   </div>
-                  <div className="w-full md:w-1/2 px-4 text-center md:text-left">
-                    <h3 className="text-2xl font-semibold text-gray-800">{spot.title}</h3>
-                    <p className="text-gray-600 mt-2 leading-relaxed">{spot.description}</p>
+
+                  {/* Text Section */}
+                  <div className="w-full md:w-1/2 px-2 sm:px-4 text-center md:text-left">
+                    <h3 className="text-xl sm:text-2xl font-semibold text-gray-800">{spot.title}</h3>
+                    <p className="text-gray-600 mt-2 text-sm sm:text-base leading-relaxed">{spot.description}</p>
                   </div>
                 </div>
               ))}
