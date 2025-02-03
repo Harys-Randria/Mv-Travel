@@ -32,7 +32,7 @@ const DestinationCard = ({ title, description, image, link, price, currency = "â
           <div className="flex flex-col text-gray-500 space-x-4  items-start">
             <div className="flex items-center">
               <FaUserFriends className="mr-1 text-blue-500" />
-              <span className="text-sm md:text-base">{people} personnes</span>
+              <span className="text-sm md:text-base">{people} persons</span>
             </div>
             <div className="flex items-center">
               <FaRegClock className="mr-1 text-blue-500" />
