@@ -1,4 +1,29 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
 const AboutPage = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.target;
+
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: new FormData(form),
+      headers: { Accept: "application/json" },
+    });
+
+    if (response.ok) {
+      setSubmitted(true);
+      form.reset();
+      setTimeout(() => setSubmitted(false), 3000);
+    } else {
+      alert("Oops! Something went wrong.");
+    }
+  };
+
   return (
     <div className="bg-gray-50">
       {/* Hero Section */}
@@ -131,12 +156,76 @@ const AboutPage = () => {
           <p className="text-lg mt-4">
             Get in touch with us to plan your next unforgettable adventure.
           </p>
-          <a
-            href="mailto:harysmialy99@gmail.com?subject=Inquiry%20from%20Website&body=Hello,%20I%20would%20like%20to%20know%20more%20about%20your%20services."
-            className="mt-8 inline-block px-8 py-4 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 transition"
-          >
-            Contact Us
-          </a>
+            <button
+              onClick={() => setIsOpen(true)}
+              className="px-8 py-4 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 transition"
+            >
+              Contact Us
+            </button>
+
+            <AnimatePresence>
+              {isOpen && (
+                <motion.div 
+                  className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <motion.div 
+                    className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg relative"
+                    initial={{ scale: 0.8 }}
+                    animate={{ scale: 1 }}
+                    exit={{ scale: 0.8 }}
+                  >
+                    <button
+                      onClick={() => setIsOpen(false)}
+                      className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                    >
+                      ✖
+                    </button>
+
+                    {submitted ? (
+                      <p className="text-green-600 text-gray-950 font-title text-center">✅ Message envoyé avec succès !</p>
+                    ) : (
+                      <form
+                        action="https://formspree.io/f/xjkgpedn"
+                        method="POST"
+                        onSubmit={handleSubmit}
+                        className="space-y-4"
+                      >
+                        <h2 className="text-xl font-semibold mb-4 text-center">Contactez-nous</h2>
+                        
+                        <div>
+                          <label className="block font-medium text-gray-700">Votre Email</label>
+                          <input
+                            type="email"
+                            name="email"
+                            required
+                            className="w-full p-2 border text-gray-950 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                          />
+                        </div>
+                        
+                        <div>
+                          <label className="block font-medium text-gray-700">Votre Message</label>
+                          <textarea
+                            name="message"
+                            required
+                            className="w-full p-2 border text-gray-950 rounded-md h-32 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                          ></textarea>
+                        </div>
+                        
+                        <button
+                          type="submit"
+                          className="w-full bg-yellow-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-yellow-600 transition"
+                        >
+                          Envoyer
+                        </button>
+                      </form>
+                    )}
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
         </div>
       </div>
     </div>
