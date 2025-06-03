@@ -182,6 +182,49 @@ const AboutPage = () => {
           </div>
         </section>
 
+        {/* Contact & Localisation */}
+        <section className="bg-gray-100 py-16 px-6">
+          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+            <div>
+              <h2 className="text-4xl font-title text-gray-800 mb-6">Contact & Location</h2>
+              <ul className="space-y-4 text-gray-700 text-lg">
+                <li>
+                  <strong>📍 Address:</strong> Lot III P 3 A Marohoho, Antananarivo 101, Madagascar
+                </li>
+                <li>
+                  <strong>📞 Phone:</strong> +261 34 76 515 64
+                </li>
+                <li>
+                  <strong>✉️ Email:</strong>{" "}
+                  <a
+                    href="mailto:contact@madaweaver.com"
+                    className="text-yellow-600 hover:underline"
+                  >
+                    contact@madaweaver.com
+                  </a>
+                </li>
+                <li className="flex gap-4 items-center">
+                  <strong>🔗 Follow us:</strong>
+                  <a href="https://facebook.com/madaweaver" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-600">Facebook</a>
+                  <a href="https://instagram.com/madaweaver" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-600">Instagram</a>
+                  <a href="https://twitter.com/madaweaver" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-600">Twitter</a>
+                </li>
+              </ul>
+            </div>
+            <div className="w-full h-96 rounded-lg overflow-hidden shadow-lg">
+              <iframe
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                style={{ border: 0 }}
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCqzBLbv56olNyhF7Lo9ZPEKTvY91x_82A&q=-18.8997494,47.5826072&zoom=15"
+                allowFullScreen
+                title="MadaWeaver Location"
+              ></iframe>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <div
           className="bg-cover bg-center py-16"
