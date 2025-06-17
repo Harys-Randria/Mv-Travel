@@ -101,7 +101,7 @@ const AboutPage = () => {
             <div>
               <h2 className="text-3xl font-title text-gray-800 mb-4">Meet Your Guide</h2>
               <p className="text-lg text-gray-600">
-                Hi! I'm Toky, your personal guide and travel consultant. I’ve spent years exploring the hidden gems of Madagascar.
+                Hi! I'm Tojo, your personal guide and travel consultant. I’ve spent years exploring the hidden gems of Madagascar.
                 My goal is to help you experience the island like a true local—with authenticity, safety, and passion.
               </p>
             </div>
